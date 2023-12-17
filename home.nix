@@ -38,7 +38,7 @@ in
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -51,6 +51,7 @@ in
     pkgs.zathura
     pkgs.sxiv
     pkgs.neofetch
+    pkgs.waybar
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -103,6 +104,7 @@ in
 	".." = "cd ..";
       };
       enableCompletion = true;
+      profileExtra = ''export XDG_DATA_DIRS="''$HOME/.nix-profile/share:''${XDG_DATA_DIRS}"'';
     };
     git = {
       enable = true;
@@ -127,7 +129,7 @@ in
       iconTheme.name = "GruvboxPlus";
       font = {
         name = "JetBrainsMono Bold";
-	size = 10;
+	size = 8;
       };
     };
 

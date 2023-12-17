@@ -103,7 +103,7 @@
   users.users.penal = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "input" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
      rofi-wayland
      dunst
@@ -128,6 +128,12 @@
     packages = with pkgs; [
       noto-fonts
       noto-fonts-emoji
+      noto-fonts-cjk
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      ubuntu_font_family
+      font-awesome
     ];
   };
 
