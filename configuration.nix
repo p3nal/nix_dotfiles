@@ -22,6 +22,20 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.wireless.iwd.enable = true;
   networking.firewall.enable = true;
+  networking.nameservers = [
+    "45.90.28.0#7b342b.dns.nextdns.io"
+    "2a07:a8c0::#7b342b.dns.nextdns.io"
+    "45.90.30.0#7b342b.dns.nextdns.io"
+    "2a07:a8c1::#7b342b.dns.nextdns.io"
+  ];
+  services.resolved = {
+    enable = true;
+    # domains = [ "~." ];
+    llmnr = "false";
+    extraConfig = ''
+      DNSOverTLS=yes
+    '';
+  };
   # add other kernel params
 
   # Set your time zone.
