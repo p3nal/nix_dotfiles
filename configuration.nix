@@ -37,6 +37,21 @@
       DNSOverTLS=yes
     '';
   };
+  services.tlp = {
+      enable = true;
+      # settings = {
+      #   CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      #   CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      #   CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      #   CPU_MIN_PERF_ON_AC = 0;
+      #   CPU_MAX_PERF_ON_AC = 100;
+      #   CPU_MIN_PERF_ON_BAT = 0;
+      #   CPU_MAX_PERF_ON_BAT = 80;
+      # };
+  };
   # add other kernel params
 
   # Set your time zone.
@@ -90,6 +105,13 @@
     initialPassword = "password";
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+     rofi-wayland
+     dunst
+     libnotify
+     firefox
+     keepassxc
+     syncthing
+     vlc
     ];
   };
 
@@ -99,12 +121,6 @@
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      git
-     rofi-wayland
-     libnotify
-     firefox
-     keepassxc
-     syncthing
-     vlc
      home-manager
    ];
 

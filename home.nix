@@ -6,7 +6,7 @@ in
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./modules/hyprland.nix
-    ./modules/waybar.nix
+    # ./modules/waybar.nix
     ./modules/kitty.nix
     ./modules/dunst.nix
     ./modules/firefox.nix
@@ -50,6 +50,7 @@ in
     pkgs.dconf
     pkgs.zathura
     pkgs.sxiv
+    pkgs.neofetch
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -71,6 +72,7 @@ in
         font: "JetBrainsMono Bold 10";
       }
    '';
+   ".config/waybar/config".source = ./waybar/config;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -109,12 +111,20 @@ in
     };
   };
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 16;
+  };
+
     gtk = {
       enable = true;
+      theme.package = pkgs.adw-gtk3;
       theme.name = "adw-gtk3";
       cursorTheme.name = "Bibata-Modern-Ice";
       iconTheme.package = gruvboxplus;
-      iconTheme.name = "GrubboxPlus";
+      iconTheme.name = "GruvboxPlus";
       font = {
         name = "JetBrainsMono Bold";
 	size = 10;
@@ -136,5 +146,4 @@ in
       "video/*" = [ "vlc.desktop" ];
     };
   };
-
 }
