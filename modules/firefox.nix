@@ -2,7 +2,7 @@
 {
   programs.firefox = {
     enable = true;
-    profiles.penal {
+    profiles.penal = {
       settings = {
         "browser.backspace_action" = 0;
 	"browser.tabs.closeWindowWithLastTab" = false;
@@ -27,7 +27,8 @@
 	order = [
 	  "DuckDuckGo"
 	];
+	default = "DuckDuckGo";
       };
     };
-  }
+  };
 }
