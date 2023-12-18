@@ -22,6 +22,16 @@
     { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
+  
+  fileSystems."/mnt/snw" =
+    { device = "/dev/disk/by-label/S\\x26W";
+	  fsType = "ext4";
+	  depends = "/";
+	  options = [
+	    "noauto"
+		"users"
+	  ];
+	};
 
   swapDevices = [
   	{
