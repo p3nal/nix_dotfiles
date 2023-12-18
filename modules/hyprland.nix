@@ -94,8 +94,8 @@
 	", xf86audiolowervolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%-"
 	", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
 	", xf86audiomicmute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
-	", xf86monbrightnessup, exec, light -A 2"
-	", xf86monbrightnessdown, exec, light -U 2"
+	", xf86monbrightnessup, exec, ${pkgs.light}/bin/light -A 2"
+	", xf86monbrightnessdown, exec, ${pkgs.light}/bin/light -U 2"
 	# Move focus with mainMod + arrow keys
 	"$mainMod, K, movefocus, u"
 	"$mainMod, J, movefocus, d"
@@ -141,6 +141,10 @@
 	"$mainMod, return, swapnext, "
 	"$mainMod, H, splitratio, -0.2"
 	"$mainMod, L, splitratio, +0.2"
+
+	''SHIFT, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - |  ${pkgs.wl-clipboard}/bin/wl-copy''
+	# ''CTRL, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - |  ${pkgs.wl-clipboard}/bin/wl-copy''
+	''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - ''
        ];
 
       bindm = [

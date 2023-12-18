@@ -16,6 +16,8 @@
   boot.loader.systemd-boot.configurationLimit = 10;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -71,10 +73,27 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-  programs.light.enable = true;
-  hardware.opengl.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs = {
+    light.enable = true;
+    hyprland.enable = true;
+    nano.enable = false; # remove nixos bloat
+    virt-manager.enable = true;
+  };
+
+  xdg.portal.wlr.enable = true;
 
 
+  # docker
+  virtualisation = {
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    };
+    libvirtd = {
+      enable = true;
+    };
+  };
   
 
   # Configure keymap in X11
@@ -103,7 +122,7 @@
   users.users.penal = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
      rofi-wayland
      dunst
