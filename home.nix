@@ -6,7 +6,7 @@ in
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./modules/hyprland.nix
-    # ./modules/waybar.nix
+    ./modules/waybar.nix
     ./modules/kitty.nix
     ./modules/dunst.nix
     ./modules/firefox.nix
@@ -17,7 +17,8 @@ in
   home.username = "penal";
   home.homeDirectory = "/home/penal";
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-medium;
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -53,6 +54,8 @@ in
     neofetch
     waybar
     tree
+    gdu
+    brave
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -73,8 +76,16 @@ in
       * {
         font: "JetBrainsMono Bold 10";
       }
+      window {
+	 border-radius: 10px;
+	 border: 3px solid;
+	 border-color: #${config.colorScheme.colors.base03};
+      }
    '';
-   ".config/waybar/config".source = ./waybar/config;
+   # ".config/waybar/config".source = ./waybar/config;
+   # ".config/waybar/style.css".text = ''
+   #   ${builtins.readFile ./waybar/style.css}
+   # '';
   };
 
   # You can also manage environment variables but you will have to manually
