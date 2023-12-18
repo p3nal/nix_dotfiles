@@ -17,7 +17,7 @@ in
   home.username = "penal";
   home.homeDirectory = "/home/penal";
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-medium;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-hard;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

@@ -151,7 +151,7 @@
       }
       #workspaces button:hover {
           box-shadow: inherit;
-      	background-color: #${config.colorScheme.colors.base0C};
+      	background-color: #${config.colorScheme.colors.base0A};
       }
 
       #workspaces button.focused {

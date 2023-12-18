@@ -9,7 +9,8 @@
 	      offset = "30x50";
 	      origin = "top-right";
 	      transparency = 10;
-	      frame_color = "#${config.colorScheme.colors.base0E}";
+	      # frame_color = "#${config.colorScheme.colors.base0E}";
+	      frame_color = "#${config.colorScheme.colors.base0A}55";
 	      font = "JetBrainsMono";
       };
 
