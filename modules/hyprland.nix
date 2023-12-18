@@ -6,7 +6,7 @@
 	general = {
 	    # See https://wiki.hyprland.org/Configuring/Variables/ for more
 	    gaps_in = 5;
-	    gaps_out = 20;
+	    gaps_out = 10;
 	    border_size = 2;
 	    "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
 	    "col.inactive_border" = "rgba(595959aa)";
@@ -15,6 +15,9 @@
 
 	    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
 	    allow_tearing = false;
+	};
+	input = {
+	  kb_options = "caps:swapescape";
 	};
 	decoration = {
 	    # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -67,7 +70,8 @@
 
 	gestures = {
 	    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-	    workspace_swipe = "off";
+	    workspace_swipe = "on";
+	    workspace_swipe_distance = 200;
 	};
 
 	"device:epic-mouse-v1" = {
@@ -91,8 +95,6 @@
 	", xf86monbrightnessup, exec, light -A 2"
 	", xf86monbrightnessdown, exec, light -U 2"
 	# Move focus with mainMod + arrow keys
-	"$mainMod, H, movefocus, l"
-	"$mainMod, L, movefocus, r"
 	"$mainMod, K, movefocus, u"
 	"$mainMod, J, movefocus, d"
 
@@ -127,6 +129,16 @@
 	# Scroll through existing workspaces with mainMod + scroll
 	"$mainMod, mouse_down, workspace, e+1"
 	"$mainMod, mouse_up, workspace, e-1"
+
+	# my shit
+	"$mainMod, Tab, workspace, previous"
+	"$mainMod, G, togglegroup, "
+	"$mainMod SHIFT, space, togglefloating, "
+	"$mainMod, F, fullscreen, 0"
+	"$mainMod SHIFT, F, fakefullscreen, "
+	"$mainMod, return, swapnext, "
+	"$mainMod, H, splitratio, -0.2"
+	"$mainMod, L, splitratio, +0.2"
        ];
 
       bindm = [

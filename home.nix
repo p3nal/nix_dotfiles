@@ -10,6 +10,7 @@ in
     ./modules/kitty.nix
     ./modules/dunst.nix
     ./modules/firefox.nix
+    ./modules/neovim.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -46,7 +47,6 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.neovim
     pkgs.dconf
     pkgs.zathura
     pkgs.sxiv
@@ -116,7 +116,7 @@ in
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
+    name = "Bibata-Modern-Classic";
     size = 16;
   };
 
@@ -124,7 +124,7 @@ in
       enable = true;
       theme.package = pkgs.adw-gtk3;
       theme.name = "adw-gtk3";
-      cursorTheme.name = "Bibata-Modern-Ice";
+      cursorTheme.name = "Bibata-Modern-Classic";
       iconTheme.package = gruvboxplus;
       iconTheme.name = "GruvboxPlus";
       font = {
@@ -135,7 +135,11 @@ in
 
     qt = {
       enable = true;
-      platformTheme = "gtk";
+      platformTheme = "gtk3";
+      style = {
+        name = "adwaita-dark";
+	package = pkgs.adwaita-qt;
+      };
     };
   
   xdg.mimeApps = {
