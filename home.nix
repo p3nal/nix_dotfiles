@@ -80,15 +80,12 @@ in
               font: "JetBrainsMono Bold 10";
             }
             window {
-      	 border-radius: 10px;
-      	 border: 3px solid;
-      	 border-color: #${config.colorScheme.colors.base03};
+               border-radius: 10px;
+               border: 3px solid;
+               border-color: #${config.colorScheme.colors.base03};
             }
     '';
-    # ".config/waybar/config".source = ./waybar/config;
-    # ".config/waybar/style.css".text = ''
-    #   ${builtins.readFile ./waybar/style.css}
-    # '';
+    ".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -135,6 +132,17 @@ in
       name = "JetBrainsMono Bold";
       size = 8;
     };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 
   qt = {
@@ -154,6 +162,16 @@ in
       "video/png" = [ "vlc.desktop" ];
       "video/jpg" = [ "vlc.desktop" ];
       "video/*" = [ "vlc.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "application/x-extension-htm" = [ "firefox.desktop" ];
+      "application/x-extension-html" = [ "firefox.desktop" ];
+      "application/x-extension-shtml" = [ "firefox.desktop" ];
+      "application/xhtml+xml" = [ "firefox.desktop" ];
+      "application/x-extension-xhtml" = [ "firefox.desktop" ];
+      "application/x-extension-xht" = [ "firefox.desktop" ];
     };
   };
 

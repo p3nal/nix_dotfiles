@@ -2,11 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs,... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -40,19 +41,19 @@
     '';
   };
   services.tlp = {
-      enable = true;
-      # settings = {
-      #   CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    enable = true;
+    # settings = {
+    #   CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      #   CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      #   CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+    #   CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    #   CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-      #   CPU_MIN_PERF_ON_AC = 0;
-      #   CPU_MAX_PERF_ON_AC = 100;
-      #   CPU_MIN_PERF_ON_BAT = 0;
-      #   CPU_MAX_PERF_ON_BAT = 80;
-      # };
+    #   CPU_MIN_PERF_ON_AC = 0;
+    #   CPU_MAX_PERF_ON_AC = 100;
+    #   CPU_MIN_PERF_ON_BAT = 0;
+    #   CPU_MAX_PERF_ON_BAT = 80;
+    # };
   };
   # add other kernel params
 
@@ -94,7 +95,7 @@
       enable = true;
     };
   };
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -124,26 +125,29 @@
     initialPassword = "password";
     extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-     rofi-wayland
-     dunst
-     libnotify
-     firefox
-     keepassxc
-     syncthing
-     vlc
+      rofi-wayland
+      dunst
+      libnotify
+      firefox
+      keepassxc
+      syncthing
+      vlc
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     git
-     home-manager
-   ];
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    git
+    home-manager
+    libsForQt5.qt5.qtquickcontrols
+    libsForQt5.qt5.qtgraphicaleffects
+  ];
 
   fonts = {
+    enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts
       noto-fonts-emoji
@@ -154,6 +158,11 @@
       ubuntu_font_family
       font-awesome
     ];
+  };
+
+  qt = {
+    enable = true;
+    style = "adwaita-dark";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
