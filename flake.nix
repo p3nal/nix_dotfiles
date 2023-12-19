@@ -10,9 +10,10 @@
     };
 
     nix-colors.url = "github:misterio77/nix-colors";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -23,7 +24,7 @@
           specialArgs = {inherit inputs;};
           modules = [ 
             ./configuration.nix
-            # inputs.home-manager.nixosModules.default
+            nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ];
         };
       homeConfigurations.penal = home-manager.lib.homeManagerConfiguration {
