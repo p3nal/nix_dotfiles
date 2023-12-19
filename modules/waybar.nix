@@ -8,10 +8,6 @@
         position = "top";
         height = 24;
         spacing = 4;
-        output = [
-          "eDP-1"
-          "HDMI-A-1"
-        ];
 
         modules-left = [ "custom/nixos-logo" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
         modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];

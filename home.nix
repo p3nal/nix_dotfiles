@@ -1,10 +1,9 @@
 { config, pkgs, inputs, ... }:
 
-let gruvboxplus = import ./modules/gruvbox-plus.nix { inherit pkgs; };
-in
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/theming.nix
     ./modules/bash.nix
     ./modules/hyprland.nix
     ./modules/waybar.nix
@@ -85,7 +84,6 @@ in
                border-color: #${config.colorScheme.colors.base03};
             }
     '';
-    ".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -110,7 +108,7 @@ in
     git = {
       enable = true;
       userName = "p3nal";
-      userEmail = "abdullah.og@protonmail.com";
+      userEmail = "103528596+p3nal@users.noreply.github.com";
     };
   };
 
@@ -121,38 +119,6 @@ in
     size = 16;
   };
 
-  gtk = {
-    enable = true;
-    theme.package = pkgs.adw-gtk3;
-    theme.name = "adw-gtk3";
-    cursorTheme.name = "Bibata-Modern-Classic";
-    iconTheme.package = gruvboxplus;
-    iconTheme.name = "GruvboxPlus";
-    font = {
-      name = "JetBrainsMono Bold";
-      size = 8;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk3";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
-  };
 
   xdg.mimeApps = {
     enable = true;
