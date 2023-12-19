@@ -85,7 +85,7 @@ in
                border-color: #${config.colorScheme.colors.base03};
             }
     '';
-    # ".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
+    ".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
   };
 
   # You can also manage environment variables but you will have to manually

@@ -13,10 +13,15 @@
           "HDMI-A-1"
         ];
 
-        modules-left = [ "hyprland/workspaces" "hyprland/submap" "custom/media" ];
+        modules-left = [ "custom/nixos-logo" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
         modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
         modules-center = [ "idle_inhibitor" "clock" ];
 
+
+        "custom/nixos-logo" = {
+          format = " 󱄅 ";
+          tooltip = false;
+        };
 
         keyboard-state = {
           numlock = true;
@@ -116,51 +121,51 @@
     };
     style = ''
 
-	* {
-          border: none;
-          font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
-          font-size: 13px;
-          color: #${config.colorScheme.colors.base07};
-          border-radius: 20px;
-      }
+    * {
+      border: none;
+      font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
+      font-size: 13px;
+      color: #${config.colorScheme.colors.base07};
+      border-radius: 20px;
+    }
 
-      window {
-      	font-weight: bold;
-      }
-      window#waybar {
-          background: rgba(0, 0, 0, 0);
-      }
-      /*-----module groups----*/
-      .modules-right {
-      	background-color: #${config.colorScheme.colors.base01};
-          margin: 4px 10px 0 0;
-      }
-      .modules-center {
-      	background-color: #${config.colorScheme.colors.base01};
-          margin: 2px 0 0 0;
-      }
-      .modules-left {
-          margin: 2px 0 0 5px;
-      	background-color: #${config.colorScheme.colors.base01};
-		color: #${config.colorScheme.colors.base07};
-      }
-      /*-----modules indv----*/
+    window {
+      font-weight: bold;
+    }
+    window#waybar {
+      background: rgba(0, 0, 0, 0);
+    }
+    /*-----module groups----*/
+    .modules-right {
+      background-color: #${config.colorScheme.colors.base01};
+      margin: 4px 10px 0 0;
+    }
+    .modules-center {
+      background-color: #${config.colorScheme.colors.base01};
+      margin: 4px 0 0 0;
+    }
+    .modules-left {
+      margin: 4px 0 0 10px;
+      background-color: #${config.colorScheme.colors.base01};
+      color: #${config.colorScheme.colors.base07};
+    }
+    /*-----modules indv----*/
       #workspaces button {
-          padding: 1px 5px;
-          background-color: transparent;
+        padding: 1px 5px;
+        background-color: transparent;
       }
       #workspaces button:hover {
-          box-shadow: inherit;
-      	background-color: #${config.colorScheme.colors.base0A};
+        box-shadow: inherit;
+        background-color: #${config.colorScheme.colors.base0A};
       }
 
       #workspaces button.focused {
-      	background-color: rgba(0,43,51,0.85);
+        background-color: #${config.colorScheme.colors.base05};
       }
 
       #clock,
-	  #backlight,
-	  #disk,
+      #backlight,
+      #disk,
       #battery,
       #cpu,
       #memory,
@@ -170,23 +175,23 @@
       #custom-media,
       #tray,
       #idle_inhibitor {
-          padding: 0 10px;
+        padding: 0 10px;
       }
       /*-----Indicators----*/
       #idle_inhibitor.activated {
-          color: #${config.colorScheme.colors.base0B};
+        color: #${config.colorScheme.colors.base0B};
       }
       #pulseaudio.muted {
-          color: #${config.colorScheme.colors.base08};
+        color: #${config.colorScheme.colors.base08};
       }
       #battery.charging {
-          color: #2dcc36;
+        color: #2dcc36;
       }
       #battery.warning:not(.charging) {
-      	color: #e6e600;
+        color: #e6e600;
       }
       #battery.critical:not(.charging) {
-          color: #cc3436;
+        color: #cc3436;
       }
 	  '';
   };
