@@ -26,6 +26,8 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.wireless.iwd.enable = true;
   networking.firewall.enable = true;
+  systemd.network.enable = true;
+  networking.useNetworkd = true;
   networking.nameservers = [
     "45.90.28.0#7b342b.dns.nextdns.io"
     "2a07:a8c0::#7b342b.dns.nextdns.io"
