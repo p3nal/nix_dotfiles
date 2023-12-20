@@ -211,6 +211,10 @@ in
 
         # swaylock
         "$mainMod CTRL, L, exec, swaylock"
+
+        ", switch:Lid Switch, exec, swaylock"
+
+
       ];
 
 
