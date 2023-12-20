@@ -5,11 +5,15 @@ vim.cmd("colorscheme gruvbox")
 require("Comment").setup()
 
 -- identation on blank lines
--- require("indent-blankline").setup({
---       char = '┊',
---       show_trailing_blankline_indent = false,
--- })
+require("ibl").setup()
 
 -- Setup neovim lua configuration
 require('neodev').setup()
+
+-- nvim-tree
+
+require("nvim-tree").setup({
+  disable_netrw = false,
+  hijack_netrw = true,
+})
 

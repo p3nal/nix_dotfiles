@@ -6,18 +6,18 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 24;
+        height = 30;
         spacing = 4;
 
-        modules-left = [ "custom/nixos-logo" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
-        modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
+        modules-left = [ "custom/nixos-logo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
         modules-center = [ "idle_inhibitor" "clock" ];
+        modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
 
 
         "custom/nixos-logo" = {
           format = " 󱄅 ";
           tooltip = false;
-          # on-click-right = "";
+          on-click = "chpaper";
         };
 
         keyboard-state = {
@@ -50,8 +50,28 @@
           spacing = 10;
         };
         clock = {
+          interval = 60;
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
+          # format-alt = "{:%Y-%m-%d}";
+          format-alt = "{:%a, %b %d, %Y (%R)}";
+          "calendar" = {
+            "mode" = "year";
+            "mode-mon-col" = 3;
+            "weeks-pos" = "";
+            "on-click-right" = "mode";
+            "format" = {
+              "months" = "<span color='#${config.colorScheme.colors.base0D}'><b>{}</b></span>";
+              "days" = "<span color='#${config.colorScheme.colors.base0B}'><b>{}</b></span>";
+              "weeks" = "<span color='#${config.colorScheme.colors.base0A}'><b>W{}</b></span>";
+              "weekdays" = "<span color='#${config.colorScheme.colors.base0F}'><b>{}</b></span>";
+              "today" = "<span color='#${config.colorScheme.colors.base08}'><b><u>{}</u></b></span>";
+            };
+          };
+          "actions" = {
+            "on-click-right" = "mode";
+            # "on-scroll-up" = "shift_up";
+            # "on-scroll-down" = "shift_down";
+          };
         };
         disk = {
           format = "{free} 󰋊";
@@ -98,6 +118,9 @@
           format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
         pulseaudio = {
+          states = {
+            high = 80;
+          };
           format = "{volume}% {icon} {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
           format-bluetooth-muted = "󰝟 {icon} {format_source}";
@@ -118,78 +141,99 @@
     };
 
     style = ''
-    * {
-      border: none;
-      font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
-      font-size: 13px;
-      color: #${config.colorScheme.colors.base07};
-      border-radius: 20px;
-    }
+                * {
+                  border: none;
+                  font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
+                  font-size: 13px;
+                  color: #${config.colorScheme.colors.base07};
+                  border-radius: 20px;
+                }
 
-    window {
-      font-weight: bold;
-    }
-    window#waybar {
-      background: rgba(0, 0, 0, 0);
-    }
-    /*-----module groups----*/
-    .modules-right {
-      background-color: #${config.colorScheme.colors.base01};
-      margin: 4px 10px 0 0;
-    }
-    .modules-center {
-      background-color: #${config.colorScheme.colors.base01};
-      margin: 4px 0 0 0;
-    }
-    .modules-left {
-      margin: 4px 0 0 10px;
-      background-color: #${config.colorScheme.colors.base01};
-      color: #${config.colorScheme.colors.base07};
-    }
-    /*-----modules indv----*/
-      #workspaces button {
-        padding: 1px 5px;
-        background-color: transparent;
-      }
-      #workspaces button:hover {
-        box-shadow: inherit;
-        background-color: #${config.colorScheme.colors.base0A};
-      }
+                window {
+                  font-weight: bold;
+                }
 
-      #workspaces button.focused {
-        background-color: #${config.colorScheme.colors.base05};
-      }
+                window#waybar {
+                  background: rgba(0, 0, 0, 0);
+                }
 
-      #clock,
-      #backlight,
-      #disk,
-      #battery,
-      #cpu,
-      #memory,
-      #temperature,
-      #network,
-      #pulseaudio,
-      #custom-media,
-      #tray,
-      #idle_inhibitor {
-        padding: 0 10px;
-      }
-      /*-----Indicators----*/
-      #idle_inhibitor.activated {
-        color: #${config.colorScheme.colors.base0B};
-      }
-      #pulseaudio.muted {
-        color: #${config.colorScheme.colors.base08};
-      }
-      #battery.charging {
-        color: #${config.colorScheme.colors.base0C};
-      }
-      #battery.warning:not(.charging) {
-        color: #${config.colorScheme.colors.base0A};
-      }
-      #battery.critical:not(.charging) {
-        color: #${config.colorScheme.colors.base08};
-      }
-	  '';
+                /*-----module groups----*/
+                .modules-right {
+                  background-color: @theme_base_color;
+                  color: @theme_text_color;
+                  margin: 4px 10px 0 0;
+                }
+                .modules-center {
+                  background-color: @theme_base_color;
+                  color: @theme_text_color;
+                  margin: 4px 0 0 0;
+                }
+                .modules-left {
+                  margin: 4px 0 0 10px;
+                  background-color: @theme_base_color;
+                  color: @theme_text_color;
+                }
+                /*-----modules indv----*/
+                  #workspaces button {
+                    padding: 1px 5px;
+                    background-color: transparent;
+                  }
+                  #workspaces button:hover {
+                    box-shadow: inherit;
+                    background-color: #${config.colorScheme.colors.base0B};
+                  }
+                  #custom-nixos-logo button:hover {
+                    box-shadow: inherit;
+                    background-color: #${config.colorScheme.colors.base0B};
+                  }
+
+                  #workspaces button.focused {
+                    background-color: #${config.colorScheme.colors.base09};
+                    color: #${config.colorScheme.colors.base01};
+                  }
+
+                  #workspaces button.focused {
+                      background-color: #64727D;
+                      box-shadow: inset 0 -3px #ffffff;
+                  }
+
+
+                  #clock,
+                  #backlight,
+                  #disk,
+                  #battery,
+                  #cpu,
+                  #memory,
+                  #temperature,
+                  #network,
+                  #pulseaudio,
+                  #custom-media,
+                  #tray,
+                  #idle_inhibitor {
+                    padding: 0 10px;
+                  }
+                  /*-----Indicators----*/
+                  #idle_inhibitor.activated {
+                    color: #${config.colorScheme.colors.base0B};
+                  }
+                  #pulseaudio.muted {
+                    color: #${config.colorScheme.colors.base08};
+                  }
+                  #pulseaudio:not(.high) {
+                    color: #${config.colorScheme.colors.base09};
+                  }
+                  #battery.charging {
+                    color: #${config.colorScheme.colors.base0C};
+                  }
+                  #battery.warning:not(.charging) {
+                    color: #${config.colorScheme.colors.base0A};
+                  }
+                  #battery.critical:not(.charging) {
+                    color: #${config.colorScheme.colors.base08};
+                  }
+                  #clock.calendar {
+                    font-size: 8px;
+                  }
+            	  '';
   };
 }

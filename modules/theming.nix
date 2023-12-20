@@ -8,11 +8,15 @@ in
 
   gtk = {
     enable = true;
-    theme.package = pkgs.adw-gtk3;
-    theme.name = "adw-gtk3";
+    theme = {
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3";
+    };
     cursorTheme.name = "Bibata-Modern-Classic";
-    iconTheme.package = gruvboxplus;
-    iconTheme.name = "GruvboxPlus";
+    iconTheme = {
+      package = gruvboxplus;
+      name = "GruvboxPlus";
+    };
     font = {
       name = "JetBrainsMono Bold";
       size = 10;
@@ -28,6 +32,7 @@ in
         gtk-application-prefer-dark-theme=1
       '';
     };
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
   qt = {

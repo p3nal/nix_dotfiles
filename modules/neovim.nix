@@ -37,9 +37,10 @@
 	  gruvbox-nvim
 	  neodev-nvim
 	  lualine-nvim
-          nvim-web-devicons
+	  nvim-web-devicons
 	  indent-blankline-nvim
 	  undotree
+	  nvim-tree-lua
 	  vim-nix
 
 	  (nvim-treesitter.withPlugins (p: [

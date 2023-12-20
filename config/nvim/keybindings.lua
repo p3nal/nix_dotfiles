@@ -18,10 +18,12 @@ vim.keymap.set("n", "<leader>b", ":bn<CR>", {silent = true, desc = 'switch betwe
 vim.keymap.set("n", "<leader>d", ":bd<CR>", {silent = true, desc = 'delete buffer'})
 
 -- tabs
-vim.keymap.set("n", "<leader>t", ":tabnew<CR>", {silent = true, desc = 'New [T]ab'})
-vim.keymap.set("n", "<leader>n", ":tabnext<CR>", {silent = true, desc = '[N]ext Tab'})
-vim.keymap.set("n", "<leader>p", ":tabprev<CR>", {silent = true, desc = '[P]revious Tab'})
+vim.keymap.set("n", "<leader>n", ":tabnew<CR>", {silent = true, desc = 'New [T]ab'})
+vim.keymap.set("n", "<leader>p", ":tabnext<CR>", {silent = true, desc = '[p]Next Tab'})
+vim.keymap.set("n", "<leader>P", ":tabprev<CR>", {silent = true, desc = '[P]revious Tab'})
 
+-- nvim-tree
+vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", {silent = true, desc = 'Nvim [T]ree'})
 
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

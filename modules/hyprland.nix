@@ -1,5 +1,8 @@
 { inputs, pkgs, config, ... }:
+let wallpaper_path = "$HOME/Pictures/wallpapers";
+in
 {
+
   # hyprpaper
   home = {
     file = {
@@ -20,6 +23,22 @@
                 exit
             fi
             hyprctl reload
+      '')
+      (pkgs.writeShellScriptBin "chpaper" ''
+        if [[ "`hyprctl hyprpaper`" == *"Couldn't connect to"* ]]; then
+          pkill swaybg
+          hyprpaper &
+          sleep 1
+        fi
+        WAL_PATH="${wallpaper_path}"
+        WALLPAPER="$(ls $WAL_PATH| sed -n "$((RANDOM%$(ls $WAL_PATH| wc -l)+1))p")"
+        hyprctl hyprpaper preload $WAL_PATH/$WALLPAPER
+        hyprctl hyprpaper wallpaper "eDP-1,`echo $WAL_PATH/$WALLPAPER`"
+        hyprctl hyprpaper unload all
+        if [[ "`hyprctl hyprpaper`" == *"Couldn't connect to"* ]]; then
+          pkill swaybg
+          swaybg -i $WAL_PATH/$WALLPAPER &
+        fi
       '')
     ];
 
@@ -74,7 +93,9 @@
 
       misc = {
         disable_autoreload = true;
-        force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+        # force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+        disable_hyprland_logo = true;
+        focus_on_activate = true;
         vfr = true;
         vrr = 1;
       };
@@ -98,6 +119,7 @@
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        force_split = 2;
         preserve_split = "yes"; # you probably want this
       };
 
@@ -182,8 +204,13 @@
         # ''CTRL, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - |  ${pkgs.wl-clipboard}/bin/wl-copy''
         ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - ''
 
-        ''WIN, G, exec, gamemode''
+        #gamemode
+        "WIN, G, exec, gamemode"
+
+        # wallpaper
+        "$mainMod, W, exec, chpaper"
       ];
+
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -192,7 +219,7 @@
       ];
 
       exec-once = [
-        "hyprpaper"
+        "chpaper"
         "waybar"
       ];
 

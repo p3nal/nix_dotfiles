@@ -54,6 +54,7 @@
     neofetch
     waybar
     hyprpaper
+    hyprpicker
     swaybg
     tree
     gdu
