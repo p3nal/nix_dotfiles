@@ -6,7 +6,7 @@ in
   programs.swaylock = {
       enable = true;
       settings = {
-        image = "/home/penal/Pictures/wallpapers/cactus.png";
+        image = "$HOME/Pictures/wallpapers/cactus.png";
         color = "${colors.base02}";
         inside-color = "${colors.base0C}";
         font = "JetBrainsMono Bold";
