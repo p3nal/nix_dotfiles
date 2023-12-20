@@ -192,7 +192,6 @@ in
 
         # my shit
         "$mainMod, Tab, workspace, previous"
-        "$mainMod, G, togglegroup, "
         "$mainMod SHIFT, space, togglefloating, "
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fakefullscreen, "
@@ -205,10 +204,13 @@ in
         ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - ''
 
         #gamemode
-        "WIN, G, exec, gamemode"
+        "$mainMod, G, exec, gamemode"
 
         # wallpaper
         "$mainMod, W, exec, chpaper"
+
+        # swaylock
+        "$mainMod CTRL, L, exec, swaylock"
       ];
 
 
@@ -221,6 +223,8 @@ in
       exec-once = [
         "chpaper"
         "waybar"
+        "[workspace 2 silent] firefox"
+        "[workspace 9 silent] keepassxc"
       ];
 
       xwayland.force_zero_scaling = true;

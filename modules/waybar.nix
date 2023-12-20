@@ -1,4 +1,7 @@
 { inputs, pkgs, config, ... }:
+let
+  colors = config.colorScheme.colors;
+in 
 {
   programs.waybar = {
     enable = true;
@@ -60,11 +63,11 @@
             "weeks-pos" = "";
             "on-click-right" = "mode";
             "format" = {
-              "months" = "<span color='#${config.colorScheme.colors.base0D}'><b>{}</b></span>";
-              "days" = "<span color='#${config.colorScheme.colors.base0B}'><b>{}</b></span>";
-              "weeks" = "<span color='#${config.colorScheme.colors.base0A}'><b>W{}</b></span>";
-              "weekdays" = "<span color='#${config.colorScheme.colors.base0F}'><b>{}</b></span>";
-              "today" = "<span color='#${config.colorScheme.colors.base08}'><b><u>{}</u></b></span>";
+              "months" = "<span color='#${colors.base0D}'><b>{}</b></span>";
+              "days" = "<span color='#${colors.base0B}'><b>{}</b></span>";
+              "weeks" = "<span color='#${colors.base0A}'><b>W{}</b></span>";
+              "weekdays" = "<span color='#${colors.base0F}'><b>{}</b></span>";
+              "today" = "<span color='#${colors.base08}'><b><u>{}</u></b></span>";
             };
           };
           "actions" = {
@@ -145,7 +148,7 @@
                   border: none;
                   font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
                   font-size: 13px;
-                  color: #${config.colorScheme.colors.base07};
+                  color: #${colors.base07};
                   border-radius: 20px;
                 }
 
@@ -180,16 +183,16 @@
                   }
                   #workspaces button:hover {
                     box-shadow: inherit;
-                    background-color: #${config.colorScheme.colors.base0B};
+                    background-color: #${colors.base0B};
                   }
                   #custom-nixos-logo button:hover {
                     box-shadow: inherit;
-                    background-color: #${config.colorScheme.colors.base0B};
+                    background-color: #${colors.base0B};
                   }
 
                   #workspaces button.focused {
-                    background-color: #${config.colorScheme.colors.base09};
-                    color: #${config.colorScheme.colors.base01};
+                    background-color: #${colors.base09};
+                    color: #${colors.base01};
                   }
 
                   #workspaces button.focused {
@@ -214,22 +217,22 @@
                   }
                   /*-----Indicators----*/
                   #idle_inhibitor.activated {
-                    color: #${config.colorScheme.colors.base0B};
+                    color: #${colors.base0B};
                   }
                   #pulseaudio.muted {
-                    color: #${config.colorScheme.colors.base08};
+                    color: #${colors.base08};
                   }
                   #pulseaudio:not(.high) {
-                    color: #${config.colorScheme.colors.base09};
+                    color: #${colors.base09};
                   }
                   #battery.charging {
-                    color: #${config.colorScheme.colors.base0C};
+                    color: #${colors.base0C};
                   }
                   #battery.warning:not(.charging) {
-                    color: #${config.colorScheme.colors.base0A};
+                    color: #${colors.base0A};
                   }
                   #battery.critical:not(.charging) {
-                    color: #${config.colorScheme.colors.base08};
+                    color: #${colors.base08};
                   }
                   #clock.calendar {
                     font-size: 8px;

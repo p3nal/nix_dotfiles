@@ -1,4 +1,7 @@
 {inputs, pkgs, config, ...}:
+let
+  colors = config.colorScheme.colors;
+in 
 {
   services.dunst = {
     enable = true;
@@ -9,15 +12,15 @@
 	      offset = "30x50";
 	      origin = "top-right";
 	      transparency = 10;
-	      # frame_color = "#${config.colorScheme.colors.base0E}";
-	      frame_color = "#${config.colorScheme.colors.base0A}55";
+	      # frame_color = "#${colors.base0E}";
+	      frame_color = "#${colors.base0A}55";
 	      font = "JetBrainsMono";
 	      corner_radius = 10;
       };
 
       urgency_normal = {
-	      foreground = "#${config.colorScheme.colors.base04}";
-	      background = "#${config.colorScheme.colors.base01}";
+	      foreground = "#${colors.base04}";
+	      background = "#${colors.base01}";
 	      timeout = 6;
       };
     };

@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/swaylock.nix
     ./modules/theming.nix
     ./modules/bash.nix
     ./modules/hyprland.nix

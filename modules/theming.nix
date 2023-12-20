@@ -1,3 +1,13 @@
+# putting this here cuz i dont know where else to put it
+# base08 - red
+# base09 - orange
+# base0A - yellow
+# base0B - green
+# base0C - aqua/cyan
+# base0D - blue
+# base0E - purple
+# base0F - brown
+
 { inputs, pkgs, config, ... }:
 let gruvboxplus = import ./gruvbox-plus.nix { inherit pkgs; };
 in

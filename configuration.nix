@@ -84,6 +84,8 @@
     virt-manager.enable = true;
   };
 
+  security.pam.services.swaylock = {};
+
   xdg.portal.wlr.enable = true;
 
 
