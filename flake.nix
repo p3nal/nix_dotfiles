@@ -13,26 +13,28 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-    
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [ 
-            ./configuration.nix
-            nixos-hardware.nixosModules.lenovo-thinkpad-t480
-          ];
-        };
-      homeConfigurations.penal = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-	  extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home.nix ];
-      };
-
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nixos-hardware,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./configuration.nix
+        nixos-hardware.nixosModules.lenovo-thinkpad-t480
+      ];
     };
+    homeConfigurations.penal = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      extraSpecialArgs = {inherit inputs;};
+      modules = [./home.nix];
+    };
+  };
 }

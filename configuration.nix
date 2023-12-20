@@ -1,24 +1,24 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
-
 
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -88,7 +88,6 @@
 
   xdg.portal.wlr.enable = true;
 
-
   # docker
   virtualisation = {
     docker = {
@@ -99,7 +98,6 @@
       enable = true;
     };
   };
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -127,7 +125,7 @@
   users.users.penal = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "video" "input" "docker" "libvirtd"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       rofi-wayland
       dunst
@@ -210,6 +208,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
-

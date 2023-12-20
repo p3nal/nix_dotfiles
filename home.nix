@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./modules/swaylock.nix
@@ -41,7 +44,7 @@
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -62,6 +65,7 @@
     brave
     telegram-desktop
     qbittorrent
+    alejandra
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -78,15 +82,15 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/rofi/config.rasi".text = ''
-            @theme "${pkgs.rofi-wayland}/share/rofi/themes/gruvbox-dark.rasi"
-            * {
-              font: "JetBrainsMono 10";
-            }
-            window {
-               border-radius: 10px;
-               border: 3px solid;
-               border-color: #${config.colorScheme.colors.base0A}ee;
-            }
+      @theme "${pkgs.rofi-wayland}/share/rofi/themes/gruvbox-dark.rasi"
+      * {
+        font: "JetBrainsMono 10";
+      }
+      window {
+         border-radius: 10px;
+         border: 3px solid;
+         border-color: #${config.colorScheme.colors.base0A}ee;
+      }
     '';
   };
 
@@ -103,7 +107,6 @@
   home.sessionVariables = {
     EDITOR = "neovim";
   };
-
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -123,34 +126,32 @@
     size = 16;
   };
 
-
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "zathura.desktop" ];
-      "image/*" = [ "sxiv.desktop" ];
-      "video/png" = [ "vlc.desktop" ];
-      "video/jpg" = [ "vlc.desktop" ];
-      "video/*" = [ "vlc.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "application/x-extension-htm" = [ "firefox.desktop" ];
-      "application/x-extension-html" = [ "firefox.desktop" ];
-      "application/x-extension-shtml" = [ "firefox.desktop" ];
-      "application/xhtml+xml" = [ "firefox.desktop" ];
-      "application/x-extension-xhtml" = [ "firefox.desktop" ];
-      "application/x-extension-xht" = [ "firefox.desktop" ];
+      "application/pdf" = ["zathura.desktop"];
+      "image/*" = ["sxiv.desktop"];
+      "video/png" = ["vlc.desktop"];
+      "video/jpg" = ["vlc.desktop"];
+      "video/*" = ["vlc.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/chrome" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "application/x-extension-htm" = ["firefox.desktop"];
+      "application/x-extension-html" = ["firefox.desktop"];
+      "application/x-extension-shtml" = ["firefox.desktop"];
+      "application/xhtml+xml" = ["firefox.desktop"];
+      "application/x-extension-xhtml" = ["firefox.desktop"];
+      "application/x-extension-xht" = ["firefox.desktop"];
     };
   };
 
   # https://nixos.wiki/wiki/Virt-manager
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
     };
   };
-
 }

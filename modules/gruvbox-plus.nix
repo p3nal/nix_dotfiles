@@ -1,5 +1,4 @@
-{ pkgs }:
-
+{pkgs}:
 pkgs.stdenv.mkDerivation {
   name = "gruvbox-plus";
 

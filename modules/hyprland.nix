@@ -1,8 +1,11 @@
-{ inputs, pkgs, config, ... }:
-let wallpaper_path = "$HOME/Pictures/wallpapers";
-in
 {
-
+  inputs,
+  pkgs,
+  config,
+  ...
+}: let
+  wallpaper_path = "$HOME/Pictures/wallpapers";
+in {
   # hyprpaper
   home = {
     file = {
@@ -213,10 +216,7 @@ in
         "$mainMod CTRL, L, exec, swaylock"
 
         ", switch:Lid Switch, exec, swaylock"
-
-
       ];
-
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging

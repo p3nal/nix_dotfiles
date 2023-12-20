@@ -7,11 +7,14 @@
 # base0D - blue
 # base0E - purple
 # base0F - brown
-
-{ inputs, pkgs, config, ... }:
-let gruvboxplus = import ./gruvbox-plus.nix { inherit pkgs; };
-in
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: let
+  gruvboxplus = import ./gruvbox-plus.nix {inherit pkgs;};
+in {
   home.file = {
     ".config/gtk-3.0/gtk.css".source = ../config/gtk-3.0/gtk.css;
   };

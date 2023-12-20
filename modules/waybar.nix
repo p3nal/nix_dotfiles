@@ -1,8 +1,11 @@
-{ inputs, pkgs, config, ... }:
-let
-  colors = config.colorScheme.colors;
-in 
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: let
+  colors = config.colorScheme.colors;
+in {
   programs.waybar = {
     enable = true;
     settings = {
@@ -12,10 +15,9 @@ in
         height = 30;
         spacing = 4;
 
-        modules-left = [ "custom/nixos-logo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
-        modules-center = [ "idle_inhibitor" "clock" ];
-        modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
-
+        modules-left = ["custom/nixos-logo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media"];
+        modules-center = ["idle_inhibitor" "clock"];
+        modules-right = ["pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray"];
 
         "custom/nixos-logo" = {
           format = " 󱄅 ";
@@ -84,7 +86,7 @@ in
           format = "{percent}% {icon}";
           on-scroll-up = "light -A 1";
           on-scroll-down = "light -U 1";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          format-icons = ["" "" "" "" "" "" "" "" ""];
         };
         "battery#bat0" = {
           adapter = "AC";
@@ -97,7 +99,7 @@ in
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = ["" "" "" "" ""];
         };
         "battery#bat1" = {
           bat = "BAT1";
@@ -110,7 +112,7 @@ in
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = ["" "" "" "" ""];
         };
         network = {
           format-wifi = "{essid} ({signalStrength}%) ";
@@ -137,106 +139,106 @@ in
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = ["" "" ""];
           };
         };
       };
     };
 
     style = ''
-                * {
-                  border: none;
-                  font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
-                  font-size: 13px;
-                  color: #${colors.base07};
-                  border-radius: 20px;
-                }
+      * {
+        border: none;
+        font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
+        font-size: 13px;
+        color: #${colors.base07};
+        border-radius: 20px;
+      }
 
-                window {
-                  font-weight: bold;
-                }
+      window {
+        font-weight: bold;
+      }
 
-                window#waybar {
-                  background: rgba(0, 0, 0, 0);
-                }
+      window#waybar {
+        background: rgba(0, 0, 0, 0);
+      }
 
-                /*-----module groups----*/
-                .modules-right {
-                  background-color: @theme_base_color;
-                  color: @theme_text_color;
-                  margin: 4px 10px 0 0;
-                }
-                .modules-center {
-                  background-color: @theme_base_color;
-                  color: @theme_text_color;
-                  margin: 4px 0 0 0;
-                }
-                .modules-left {
-                  margin: 4px 0 0 10px;
-                  background-color: @theme_base_color;
-                  color: @theme_text_color;
-                }
-                /*-----modules indv----*/
-                  #workspaces button {
-                    padding: 1px 5px;
-                    background-color: transparent;
-                  }
-                  #workspaces button:hover {
-                    box-shadow: inherit;
-                    background-color: #${colors.base0B};
-                  }
-                  #custom-nixos-logo button:hover {
-                    box-shadow: inherit;
-                    background-color: #${colors.base0B};
-                  }
+      /*-----module groups----*/
+      .modules-right {
+        background-color: @theme_base_color;
+        color: @theme_text_color;
+        margin: 4px 10px 0 0;
+      }
+      .modules-center {
+        background-color: @theme_base_color;
+        color: @theme_text_color;
+        margin: 4px 0 0 0;
+      }
+      .modules-left {
+        margin: 4px 0 0 10px;
+        background-color: @theme_base_color;
+        color: @theme_text_color;
+      }
+      /*-----modules indv----*/
+        #workspaces button {
+          padding: 1px 5px;
+          background-color: transparent;
+        }
+        #workspaces button:hover {
+          box-shadow: inherit;
+          background-color: #${colors.base0B};
+        }
+        #custom-nixos-logo button:hover {
+          box-shadow: inherit;
+          background-color: #${colors.base0B};
+        }
 
-                  #workspaces button.focused {
-                    background-color: #${colors.base09};
-                    color: #${colors.base01};
-                  }
+        #workspaces button.focused {
+          background-color: #${colors.base09};
+          color: #${colors.base01};
+        }
 
-                  #workspaces button.focused {
-                      background-color: #64727D;
-                      box-shadow: inset 0 -3px #ffffff;
-                  }
+        #workspaces button.focused {
+            background-color: #64727D;
+            box-shadow: inset 0 -3px #ffffff;
+        }
 
 
-                  #clock,
-                  #backlight,
-                  #disk,
-                  #battery,
-                  #cpu,
-                  #memory,
-                  #temperature,
-                  #network,
-                  #pulseaudio,
-                  #custom-media,
-                  #tray,
-                  #idle_inhibitor {
-                    padding: 0 10px;
-                  }
-                  /*-----Indicators----*/
-                  #idle_inhibitor.activated {
-                    color: #${colors.base0B};
-                  }
-                  #pulseaudio.muted {
-                    color: #${colors.base08};
-                  }
-                  #pulseaudio:not(.high) {
-                    color: #${colors.base09};
-                  }
-                  #battery.charging {
-                    color: #${colors.base0C};
-                  }
-                  #battery.warning:not(.charging) {
-                    color: #${colors.base0A};
-                  }
-                  #battery.critical:not(.charging) {
-                    color: #${colors.base08};
-                  }
-                  #clock.calendar {
-                    font-size: 8px;
-                  }
-            	  '';
+        #clock,
+        #backlight,
+        #disk,
+        #battery,
+        #cpu,
+        #memory,
+        #temperature,
+        #network,
+        #pulseaudio,
+        #custom-media,
+        #tray,
+        #idle_inhibitor {
+          padding: 0 10px;
+        }
+        /*-----Indicators----*/
+        #idle_inhibitor.activated {
+          color: #${colors.base0B};
+        }
+        #pulseaudio.muted {
+          color: #${colors.base08};
+        }
+        #pulseaudio:not(.high) {
+          color: #${colors.base09};
+        }
+        #battery.charging {
+          color: #${colors.base0C};
+        }
+        #battery.warning:not(.charging) {
+          color: #${colors.base0A};
+        }
+        #battery.critical:not(.charging) {
+          color: #${colors.base08};
+        }
+        #clock.calendar {
+          font-size: 8px;
+        }
+    '';
   };
 }
