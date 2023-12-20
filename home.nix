@@ -53,6 +53,8 @@
     sxiv
     neofetch
     waybar
+    hyprpaper
+    swaybg
     tree
     gdu
     brave
@@ -76,12 +78,12 @@
     ".config/rofi/config.rasi".text = ''
             @theme "${pkgs.rofi-wayland}/share/rofi/themes/gruvbox-dark.rasi"
             * {
-              font: "JetBrainsMono Bold 10";
+              font: "JetBrainsMono 10";
             }
             window {
                border-radius: 10px;
                border: 3px solid;
-               border-color: #${config.colorScheme.colors.base03};
+               border-color: #${config.colorScheme.colors.base0A}ee;
             }
     '';
   };

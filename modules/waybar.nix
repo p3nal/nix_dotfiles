@@ -17,6 +17,7 @@
         "custom/nixos-logo" = {
           format = " 󱄅 ";
           tooltip = false;
+          # on-click-right = "";
         };
 
         keyboard-state = {
@@ -53,70 +54,70 @@
           format-alt = "{:%Y-%m-%d}";
         };
         disk = {
-          format = "{free}% 󰋊";
+          format = "{free} 󰋊";
           path = "/";
         };
-        "backlight" = {
-          "format" = "{percent}% {icon}";
-          "on-scroll-up" = "light -A 1";
-          "on-scroll-down" = "light -U 1";
-          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+        backlight = {
+          format = "{percent}% {icon}";
+          on-scroll-up = "light -A 1";
+          on-scroll-down = "light -U 1";
+          format-icons = [ "" "" "" "" "" "" "" "" "" ];
         };
         "battery#bat0" = {
-          "adapter" = "AC";
-          "bat" = "BAT0";
-          "states" = {
-            "warning" = 30;
-            "critical" = 15;
+          adapter = "AC";
+          bat = "BAT0";
+          states = {
+            warning = 30;
+            critical = 10;
           };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          "format-alt" = "{time} {icon}";
-          "format-icons" = [ "" "" "" "" "" ];
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% ";
+          format-plugged = "{capacity}% ";
+          format-alt = "{time} {icon}";
+          format-icons = [ "" "" "" "" "" ];
         };
         "battery#bat1" = {
-          "bat" = "BAT1";
-          "states" = {
-            "good" = 95;
-            "warning" = 30;
-            "critical" = 15;
+          bat = "BAT1";
+          states = {
+            good = 95;
+            warning = 30;
+            critical = 15;
           };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          "format-alt" = "{time} {icon}";
-          "format-icons" = [ "" "" "" "" "" ];
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% ";
+          format-plugged = "{capacity}% ";
+          format-alt = "{time} {icon}";
+          format-icons = [ "" "" "" "" "" ];
         };
-        "network" = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
-          "format-ethernet" = "{ipaddr}/{cidr} ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
-          "format-disconnected" = "Disconnected ⚠";
-          "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+        network = {
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "{ipaddr}/{cidr} ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          format-linked = "{ifname} (No IP) ";
+          format-disconnected = "Disconnected ⚠";
+          format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
-        "pulseaudio" = {
-          "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = "󰝟 {icon} {format_source}";
-          "format-muted" = "󰝟 {format_source}";
-          "format-source" = "{volume}% ";
-          "format-source-muted" = "";
-          "format-icons" = {
-            "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "" "" "" ];
+        pulseaudio = {
+          format = "{volume}% {icon} {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = "󰝟 {icon} {format_source}";
+          format-muted = "󰝟 {format_source}";
+          format-source = "{volume}% ";
+          format-source-muted = "";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = [ "" "" "" ];
           };
         };
       };
     };
-    style = ''
 
+    style = ''
     * {
       border: none;
       font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
@@ -181,13 +182,13 @@
         color: #${config.colorScheme.colors.base08};
       }
       #battery.charging {
-        color: #2dcc36;
+        color: #${config.colorScheme.colors.base0C};
       }
       #battery.warning:not(.charging) {
-        color: #e6e600;
+        color: #${config.colorScheme.colors.base0A};
       }
       #battery.critical:not(.charging) {
-        color: #cc3436;
+        color: #${config.colorScheme.colors.base08};
       }
 	  '';
   };

@@ -12,6 +12,7 @@
 	      # frame_color = "#${config.colorScheme.colors.base0E}";
 	      frame_color = "#${config.colorScheme.colors.base0A}55";
 	      font = "JetBrainsMono";
+	      corner_radius = 10;
       };
 
       urgency_normal = {

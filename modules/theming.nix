@@ -15,7 +15,7 @@ in
     iconTheme.name = "GruvboxPlus";
     font = {
       name = "JetBrainsMono Bold";
-      size = 8;
+      size = 10;
     };
     gtk3.extraConfig = {
       Settings = ''
