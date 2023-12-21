@@ -28,6 +28,8 @@
   networking.firewall.enable = true;
   systemd.network.enable = true;
   networking.useNetworkd = true;
+  systemd.network.wait-online.enable = false;
+  systemd.services.systemd-udev-settle.enable = false;
   networking.nameservers = [
     "45.90.28.0#7b342b.dns.nextdns.io"
     "2a07:a8c0::#7b342b.dns.nextdns.io"
@@ -58,6 +60,9 @@
     # };
   };
   # add other kernel params
+  boot.kernelParams = [ "quiet" "loglevel=3" "systemd.show_status=auto" "rd.udev.log_level=3" ];
+
+  services.getty.greetingLine = "Cash Rules Everything Around Me";
 
   # Set your time zone.
   time.timeZone = "Africa/Casablanca";
