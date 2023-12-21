@@ -15,17 +15,17 @@ in {
       (pkgs.writeShellScriptBin "gamemode" ''
         HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
         if [ "$HYPRGAMEMODE" = 1 ] ; then
-                hyprctl --batch "\
-                    keyword animations:enabled 0;\
-                    keyword decoration:drop_shadow 0;\
-                    keyword decoration:blur:enabled 0;\
-                    keyword general:gaps_in 0;\
-                    keyword general:gaps_out 0;\
-                    keyword general:border_size 1;\
-                    keyword decoration:rounding 0"
-                exit
-            fi
-            hyprctl reload
+            hyprctl --batch "\
+                keyword animations:enabled 0;\
+                keyword decoration:drop_shadow 0;\
+                keyword decoration:blur:enabled 0;\
+                keyword general:gaps_in 0;\
+                keyword general:gaps_out 0;\
+                keyword general:border_size 1;\
+                keyword decoration:rounding 0"
+            exit
+        fi
+        hyprctl reload
       '')
       (pkgs.writeShellScriptBin "chpaper" ''
         if [[ "`hyprctl hyprpaper`" == *"Couldn't connect to"* ]]; then
@@ -55,6 +55,8 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      monitor = "eDP-1,preferred,auto,auto";
+      # monitor = "HDMI-A-1,preferred,auto,auto,mirror,eDP-1";
       env = [
         "WLR_DRM_NO_ATOMIC,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -216,10 +218,13 @@ in {
         "$mainMod CTRL, L, exec, swaylock"
 
         # lock on lid switch closed or open or somth idk it works.
-        ", switch:Lid Switch, exec, swaylock"
+        ", switch:on:Lid Switch, exec, swaylock"
 
         # poweroff
         "$mainMod CTRL WIN, Delete, exec, poweroff"
+
+        "WIN, D, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto,mirror,eDP-1"
+        "WIN, E, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto"
       ];
 
       bindm = [
@@ -232,6 +237,7 @@ in {
         "chpaper"
         "waybar"
         "[workspace 2 silent] firefox"
+        "[workspace 3 silent] telegram-desktop"
         "[workspace 9 silent] keepassxc"
       ];
 

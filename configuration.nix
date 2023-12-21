@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -63,6 +64,8 @@
   boot.kernelParams = [ "quiet" "loglevel=3" "systemd.show_status=auto" "rd.udev.log_level=3" ];
 
   services.getty.greetingLine = "Cash Rules Everything Around Me";
+
+  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
 
   # Set your time zone.
   time.timeZone = "Africa/Casablanca";
@@ -139,6 +142,7 @@
       keepassxc
       syncthing
       vlc
+      alsa-utils
     ];
   };
 
