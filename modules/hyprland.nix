@@ -215,7 +215,11 @@ in {
         # swaylock
         "$mainMod CTRL, L, exec, swaylock"
 
+        # lock on lid switch closed or open or somth idk it works.
         ", switch:Lid Switch, exec, swaylock"
+
+        # poweroff
+        "$mainMod CTRL WIN, Delete, exec, poweroff"
       ];
 
       bindm = [
