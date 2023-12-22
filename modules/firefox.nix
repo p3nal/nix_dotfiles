@@ -1,11 +1,11 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   programs.firefox = {
     enable = true;
     policies = {
+      # https://mozilla.github.io/policy-templates/
       CaptivePortal = false;
       DisableFirefoxStudies = true;
       DisablePocket = true;
@@ -28,6 +28,7 @@
         ProviderURL = "https://dns.nextdns.io/7b342b";
         Locked = false;
       };
+      HardwareAcceleration = true;
     };
     profiles.penal = {
       settings = {
@@ -44,6 +45,25 @@
         "extensions.pocket.enabled" = false;
         # force system DPI
         "layout.css.dpi" = 0;
+        # use Hardware WebRender
+        "gfx.webrender.all" = true;
+        # use vaapi
+        "media.ffmpeg.vaapi.enabled" = true;
+        # use xdg portals for everything
+        "widget.use-xdg-desktop-portal.mime-handler" = true;
+        "widget.use-xdg-desktop-portal.file-picker" = true;
+        "widget.use-xdg-desktop-portal.settings" = true;
+        "widget.use-xdg-desktop-portal.location" = true;
+        "widget.use-xdg-desktop-portal.open-uri" = true;
+        # force dark theme
+        "ui.systemUsesDarkTheme" = 1;
+        # nicer look
+        "browser.uidensity" = 1;
+        # save to /tmp
+        "browser.download.start_downloads_in_tmp_dir" = true;
+        "browser.download.always_ask_before_handling_new_types" = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "network.protocol-handler.expose.magnet" = false;
       };
       search = {
         force = true;
@@ -66,7 +86,7 @@
             ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
+            definedAliases = [ "@np" ];
           };
           "Startpage" = {
             urls = [
@@ -80,7 +100,7 @@
                 ];
               }
             ];
-            definedAliases = ["@g"];
+            definedAliases = [ "@g" ];
             metaData.alias = "@g";
           };
           "DuckDuckGo".metaData.hidden = false;
@@ -93,8 +113,12 @@
         privateDefault = "DuckDuckGo";
       };
       userChrome = ''
-        /* Tab bar */
+      * {
+        font-size: 8pt !important;
+        font-family: JetBrainsMono Nerd Font !important;
+      }
 
+        /* Tab bar */
         toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {
             /* Hide tab scroll buttons */
             display: none;
