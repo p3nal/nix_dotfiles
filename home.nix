@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/rofi.nix
     ./modules/scripts.nix
     ./modules/swaylock.nix
     ./modules/theming.nix
@@ -87,17 +88,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".config/rofi/config.rasi".text = ''
-      @theme "${pkgs.rofi-wayland}/share/rofi/themes/gruvbox-dark.rasi"
-      * {
-        font: "JetBrainsMono 10";
-      }
-      window {
-         border-radius: 10px;
-         border: 3px solid;
-         border-color: #${config.colorScheme.colors.base0A}ee;
-      }
-    '';
   };
 
   # You can also manage environment variables but you will have to manually

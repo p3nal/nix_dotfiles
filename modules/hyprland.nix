@@ -34,7 +34,7 @@
         border_size = 2;
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgba(${config.colorScheme.colors.base0A}ee) rgba(${config.colorScheme.colors.base0D}ee) 45deg";
+        "col.active_border" = "rgba(${config.colorScheme.colors.base0A}ff) rgba(${config.colorScheme.colors.base0D}ff) 45deg";
         "col.inactive_border" = "rgba(${config.colorScheme.colors.base0C}55) rgba(${config.colorScheme.colors.base08}55) 135deg";
 
         layout = "dwindle";

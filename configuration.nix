@@ -177,7 +177,7 @@
     initialPassword = "password";
     extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      rofi-wayland
+      # rofi-wayland
       dunst
       libnotify
       firefox

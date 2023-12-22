@@ -1,0 +1,161 @@
+/**
+ * rofi -dump-theme output.
+ * Rofi version: 1.7.5+wayland2
+ **/
+* {
+    alternate-urgent-background: var(urgent-background);
+    selected-urgent-foreground:  var(urgent-foreground);
+    alternate-active-foreground: var(active-foreground);
+    selected-active-background:  var(gruvbox-dark-yellow-light);
+    gruvbox-dark-bg0-hard:       rgba ( 29, 32, 33, 100 % );
+    highlight:                   bold italic ;
+    normal-foreground:           var(foreground);
+    gruvbox-dark-bg2:            rgba ( 80, 73, 69, 100 % );
+    background:                  var(gruvbox-dark-bg0-hard);
+    scrollbar-handle:            var(border-color);
+    selected-normal-background:  var(gruvbox-dark-bg2);
+    gruvbox-dark-red-light:      rgba ( 251, 73, 52, 100 % );
+    urgent-foreground:           var(background);
+    alternate-normal-foreground: var(foreground);
+    gruvbox-dark-red-dark:       rgba ( 204, 36, 29, 100 % );
+    selected-urgent-background:  var(gruvbox-dark-red-light);
+    selected-active-foreground:  var(active-foreground);
+    active-background:           var(gruvbox-dark-yellow-dark);
+    separatorcolor:              var(border-color);
+    alternate-active-background: var(active-background);
+    gruvbox-dark-fg0:            rgba ( 251, 241, 199, 100 % );
+    gruvbox-dark-fg1:            rgba ( 235, 219, 178, 100 % );
+    scrollbar:                   false;
+    alternate-urgent-foreground: var(urgent-foreground);
+    gruvbox-dark-yellow-dark:    rgba ( 215, 153, 33, 100 % );
+    normal-background:           var(background);
+    gruvbox-dark-yellow-light:   rgba ( 250, 189, 47, 100 % );
+    background-color:            var(background);
+    border-color:                var(gruvbox-dark-gray);
+    foreground:                  var(gruvbox-dark-fg1);
+    gruvbox-dark-gray:           rgba ( 168, 153, 132, 100 % );
+    alternate-normal-background: var(gruvbox-dark-bg0);
+    urgent-background:           var(gruvbox-dark-red-dark);
+    gruvbox-dark-bg0:            rgba ( 40, 40, 40, 100 % );
+    active-foreground:           var(background);
+    selected-normal-foreground:  var(gruvbox-dark-fg0);
+}
+window {
+    padding:          2;
+    background-color: var(background);
+    border:           2;
+	border-radius: 10px;
+    border-color: #83a598ff;
+
+}
+mainbox {
+    padding: 0;
+    border:  0;
+}
+message {
+    padding:      1px ;
+    border-color: var(separatorcolor);
+    border:       2px 0px 0px ;
+}
+textbox {
+    highlight:  var(highlight);
+    text-color: var(foreground);
+}
+listview {
+    padding:      2px 0px 0px ;
+    scrollbar:    var(scrollbar);
+    border-color: var(separatorcolor);
+    spacing:      2px ;
+    border:       2px 0px 0px ;
+}
+element {
+    padding: 2px ;
+    border:  0;
+}
+element normal.normal {
+    background-color: var(normal-background);
+    text-color:       var(normal-foreground);
+}
+element normal.urgent {
+    background-color: var(urgent-background);
+    text-color:       var(urgent-foreground);
+}
+element normal.active {
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
+}
+element selected.normal {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+element selected.urgent {
+    background-color: var(selected-urgent-background);
+    text-color:       var(selected-urgent-foreground);
+}
+element selected.active {
+    background-color: var(selected-active-background);
+    text-color:       var(selected-active-foreground);
+}
+element alternate.normal {
+    background-color: var(alternate-normal-background);
+    text-color:       var(alternate-normal-foreground);
+}
+element alternate.urgent {
+    background-color: var(alternate-urgent-background);
+    text-color:       var(alternate-urgent-foreground);
+}
+element alternate.active {
+    background-color: var(alternate-active-background);
+    text-color:       var(alternate-active-foreground);
+}
+scrollbar {
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: var(scrollbar-handle);
+}
+mode-switcher {
+    border-color: var(separatorcolor);
+    border:       2px 0px 0px ;
+}
+inputbar {
+    padding:    2px ;
+    spacing:    0;
+    text-color: var(normal-foreground);
+    children:   [ "prompt","textbox-prompt-sep","entry","case-indicator" ];
+}
+case-indicator {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+entry {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+prompt {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+button {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+button selected {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+textbox-prompt-sep {
+    margin:     0px 0.3000em 0px 0px ;
+    expand:     false;
+    str:        ":";
+    text-color: var(normal-foreground);
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
