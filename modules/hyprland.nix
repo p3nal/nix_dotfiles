@@ -187,8 +187,11 @@
         # poweroff
         "$mainMod CTRL WIN, Delete, exec, poweroff"
 
-        "WIN, D, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto,mirror,eDP-1"
-        "WIN, E, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto"
+        "SUPER, D, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto,mirror,eDP-1"
+        "SUPER, E, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto"
+
+        # clipman
+        "SUPER, V, exec, ${pkgs.clipman}/bin/clipman pick -t rofi"
       ];
 
       bindm = [
@@ -203,6 +206,7 @@
         "[workspace 2 silent] firefox"
         "[workspace 3 silent] telegram-desktop"
         "[workspace 9 silent] keepassxc"
+        "wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --no-persist"
       ];
 
       xwayland.force_zero_scaling = true;
