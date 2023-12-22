@@ -35,6 +35,11 @@
         "browser.tabs.closeWindowWithLastTab" = false;
         "browser.download.panel.shown" = true;
         "general.smoothScroll" = true;
+        # Turn off the disk cache
+        # https://wiki.archlinux.org/title/Firefox/Tweaks#Turn_off_the_disk_cache
+        "browser.cache.memory.enable" = true;
+        "browser.cache.disk.enable" = false;
+        "browser.cache.memory.capacity" = 36196;
       };
       search = {
         force = true;

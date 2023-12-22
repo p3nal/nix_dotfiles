@@ -1,12 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, pkgs
+, inputs
+, ...
 }: {
   imports = [
     # Include the results of the hardware scan.
@@ -18,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -61,11 +60,54 @@
     # };
   };
   # add other kernel params
-  boot.kernelParams = [ "quiet" "loglevel=3" "systemd.show_status=auto" "rd.udev.log_level=3" ];
+  boot = {
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+      # 25% more perf at the cost of accepting some residual risk, ill take it
+      "mitigations=off"
+      "nowatchdog"
+      "modprobe.blacklist=iTCO_wdt"
+      # for screenrec, basically
+      "i915.enable_guc=2"
+    ];
+    tmp = {
+      useTmpfs = lib.mkDefault true;
+      cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
+      tmpfsSize = "40%";
+    };
+    kernel.sysctl = {
+      # disable sysrq
+      "kernel.sysrq" = 0;
+      # disable coredumps
+      "kernel.core_pattern"="/dev/null";
+      # TCP hardening
+      "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
+      "net.ipv4.conf.default.rp_filter" = 1;
+      "net.ipv4.conf.all.rp_filter" = 1;
+      "net.ipv4.conf.all.send_redirects" = 0;
+      "net.ipv4.conf.default.send_redirects" = 0;
+      "net.ipv4.conf.all.accept_redirects" = 0;
+      "net.ipv4.conf.default.accept_redirects" = 0;
+      "net.ipv4.conf.all.secure_redirects" = 0;
+      "net.ipv4.conf.default.secure_redirects" = 0;
+      "net.ipv6.conf.all.accept_redirects" = 0;
+      "net.ipv6.conf.default.accept_redirects" = 0;
+      "net.ipv4.tcp_fastopen" = 3;
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.core.default_qdisc" = "cake";
+      "net.ipv4.tcp_syncookies" = 1;
+    };
+    kernelModules = [
+      "tcp_bbr"
+    ];
+  };
 
   services.getty.greetingLine = "Cash Rules Everything Around Me";
 
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
 
   # Set your time zone.
   time.timeZone = "Africa/Casablanca";
@@ -92,7 +134,7 @@
     virt-manager.enable = true;
   };
 
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   xdg.portal.wlr.enable = true;
 
@@ -133,7 +175,7 @@
   users.users.penal = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = ["wheel" "video" "input" "docker" "libvirtd"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       rofi-wayland
       dunst
@@ -149,6 +191,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    mesa
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
@@ -190,8 +233,15 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [
+    # syncthing
+    22000
+  ];
+  networking.firewall.allowedUDPPorts = [
+    # syncthing
+    22000
+    21027
+  ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

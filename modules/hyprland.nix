@@ -149,7 +149,6 @@ in {
         "$mainMod SHIFT, C, killactive, "
         "$mainMod SHIFT, Q, exit, "
         "$mainMod, E, exec, dolphin"
-        "$mainMod, V, togglefloating, "
         "$mainMod, P, exec, rofi -show drun -show-icons"
         "$mainMod, R, pseudo," # dwindle
         "$mainMod SHIFT, J, togglesplit," # dwindle
@@ -204,9 +203,8 @@ in {
         "$mainMod, H, splitratio, -0.2"
         "$mainMod, L, splitratio, +0.2"
 
-        ''SHIFT, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - |  ${pkgs.wl-clipboard}/bin/wl-copy''
-        # ''CTRL, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - |  ${pkgs.wl-clipboard}/bin/wl-copy''
-        ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "''$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - ''
+        ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -g "`${pkgs.slurp}/bin/slurp -w 0`" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && wl-paste > ~/Pictures/screenshots/screenshot-$(date +%a-%d-%b-%H-%M-%S).png | dunstify "Screenshot of the region taken" -t 1000''
+        ''SHIFT, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "`${pkgs.slurp}/bin/slurp -w 0`" - | ${pkgs.swappy}/bin/swappy -f - ''
 
         #gamemode
         "$mainMod, G, exec, gamemode"

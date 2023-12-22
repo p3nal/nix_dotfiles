@@ -60,6 +60,10 @@
     hyprpaper
     hyprpicker
     swaybg
+    wl-clipboard
+    grim
+    slurp
+    wl-screenrec
     tree
     gdu
     brave
