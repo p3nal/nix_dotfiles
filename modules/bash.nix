@@ -20,7 +20,8 @@
       z = "zathura";
       duh = "du . -h --max-depth 0 | awk '{print(\$1)}'";
       # see https://github.com/russelltg/wl-screenrec
-      record = "wl-screenrec -f Videos/screenrec-$(date +%a-%d-%b-%H-%M-%S).mp4";
+      record = ''wl-screenrec -f Videos/screenrec-"`date +%a-%d-%b-%H-%M-%S`".mp4'';
+      recordarea = ''wl-screenrec -g "`slurp -w 0`" -f Videos/screenrec-"`date +%a-%d-%b-%H-%M-%S`".mp4'';
     };
     enableCompletion = true;
     profileExtra = ''

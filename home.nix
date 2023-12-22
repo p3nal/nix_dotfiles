@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/scripts.nix
     ./modules/swaylock.nix
     ./modules/theming.nix
     ./modules/bash.nix
