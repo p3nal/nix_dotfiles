@@ -40,6 +40,10 @@
         "browser.cache.memory.enable" = true;
         "browser.cache.disk.enable" = false;
         "browser.cache.memory.capacity" = 36196;
+        # disable pocket
+        "extensions.pocket.enabled" = false;
+        # force system DPI
+        "layout.css.dpi" = 0;
       };
       search = {
         force = true;
@@ -88,6 +92,24 @@
         default = "DuckDuckGo";
         privateDefault = "DuckDuckGo";
       };
+      userChrome = ''
+        /* Tab bar */
+
+        toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {
+            /* Hide tab scroll buttons */
+            display: none;
+        }
+
+        .browser-toolbar > * #alltabs-button {
+            /* Hide tab drop-down list */
+            display: none;
+        }
+
+        .browser-toolbar > * #new-tab-button {
+            /* Hide new-tab button */
+            display: none;
+        }
+      '';
     };
   };
 }
