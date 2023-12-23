@@ -220,10 +220,10 @@
     ];
   };
 
-  qt = {
-    enable = true;
-    style = "adwaita-dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   style = "adwaita-dark";
+  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

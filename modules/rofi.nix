@@ -7,7 +7,7 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    font = "JetBrainsMono 8";
+    font = "JetBrainsMono Nerd Font Medium 8";
     theme = ../config/rofi/rofi-gruvbox-dark.rasi;
     extraConfig = {
       bw = 1;

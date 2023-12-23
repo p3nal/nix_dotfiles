@@ -7,7 +7,7 @@
   programs.kitty = {
     enable = true;
     theme = "Gruvbox Dark Hard";
-    font.name = "JetBrainsMono Bold";
+    font.name = "JetBrainsMono Nerd Font Medium";
     font.size = 10;
     settings = {
       enable_audio_bell = false;

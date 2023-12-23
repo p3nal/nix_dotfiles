@@ -22,10 +22,11 @@
     enable = true;
     settings = {
       monitor = "eDP-1,preferred,auto,auto";
-      # monitor = "HDMI-A-1,preferred,auto,auto,mirror,eDP-1";
       env = [
         "WLR_DRM_NO_ATOMIC,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_QPA_PLATFORM,wayland;xcb"
       ];
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more

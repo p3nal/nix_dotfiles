@@ -11,7 +11,7 @@ in {
       image = "$HOME/Pictures/wallpapers/wp11058333.png";
       color = "${colors.base02}";
       inside-color = "${colors.base0C}";
-      font = "JetBrainsMono Bold";
+      font = "JetBrainsMono Nerd Font Medium";
       font-size = 24;
       indicator-idle-visible = false;
       indicator-radius = 100;

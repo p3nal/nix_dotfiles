@@ -17,7 +17,7 @@ in {
         transparency = 10;
         # frame_color = "#${colors.base0E}";
         frame_color = "#${colors.base0A}55";
-        font = "JetBrainsMono 8";
+        font = "JetBrainsMono Nerd Font Medium 8";
         corner_radius = 10;
       };
 

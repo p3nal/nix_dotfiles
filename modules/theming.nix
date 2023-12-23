@@ -12,26 +12,23 @@
   pkgs,
   config,
   ...
-}: let
-  extraCss = "${builtins.readFile ../config/gtk/gtk.css}";
-in {
+}: {
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.adw-gtk3;
-      name = "adw-gtk3";
+      package = pkgs.gruvbox-dark-gtk;
+      name = "gruvbox-dark";
     };
     cursorTheme.name = "Bibata-Modern-Classic";
     iconTheme = {
       package = pkgs.gruvbox-dark-icons-gtk;
-      name = "Gruvbox-Dark";
+      name = "gruvbox-dark-icons-gtk";
     };
     font = {
-      name = "JetBrainsMono Bold";
-      size = 10;
+      name = "JetBrainsMono Nerd Font Medium";
+      size = 9;
     };
     gtk3 = {
-      extraCss = extraCss;
       extraConfig = {
         Settings = ''
           gtk-application-prefer-dark-theme=1
@@ -40,7 +37,6 @@ in {
     };
 
     gtk4 = {
-      extraCss = extraCss;
       extraConfig = {
         Settings = ''
           gtk-application-prefer-dark-theme=1
