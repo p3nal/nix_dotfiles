@@ -14,7 +14,9 @@
       usnw = "umount /mnt/snw";
       snw = "cd /mnt/snw";
       bkup = "ionice -c 3 rsync -auvhP /home/penal/Sync /home/penal/.dotfiles /home/penal/Movies /mnt/snw";
-      scan = "iwctl station wlan0 scan";
+      projbkup = "ionice -c 3 rsync -auvhP /home/penal/Playground /home/penal/Projects /mnt/snw --include='**.gitignore' --filter=':- .gitignore' --delete-after";
+      scan = "iwctl station wlan0 scan && iwctl station wlan0 get-networks";
+      connect = "iwctl station wlan0 connect";
       up = "systemctl start";
       down = "systemctl stop";
       z = "zathura";
