@@ -22,7 +22,7 @@
     cursorTheme.name = "Bibata-Modern-Classic";
     iconTheme = {
       package = pkgs.gruvbox-dark-icons-gtk;
-      name = "gruvbox-dark-icons-gtk";
+      name = "gruvbox-dark";
     };
     font = {
       name = "JetBrainsMono Nerd Font Medium";
