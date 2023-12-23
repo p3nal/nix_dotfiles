@@ -13,7 +13,7 @@
       msnw = "mount /mnt/snw";
       usnw = "umount /mnt/snw";
       snw = "cd /mnt/snw";
-      bkup = "ionice -c 3 rsync -auvhP /home/penal/Sync /home/penal/Movies /mnt/snw";
+      bkup = "ionice -c 3 rsync -auvhP /home/penal/Sync /home/penal/.dotfiles /home/penal/Movies /mnt/snw";
       scan = "iwctl station wlan0 scan";
       up = "systemctl start";
       down = "systemctl stop";

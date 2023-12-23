@@ -148,7 +148,7 @@
   virtualisation = {
     docker = {
       enable = true;
-      enableOnBoot = false;
+      enableOnBoot = lib.mkDefault false;
     };
     libvirtd = {
       enable = true;

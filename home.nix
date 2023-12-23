@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/neofetch.nix
     ./modules/rofi.nix
     ./modules/scripts.nix
     ./modules/swaylock.nix

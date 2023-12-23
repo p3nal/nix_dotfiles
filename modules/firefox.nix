@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   programs.firefox = {
     enable = true;
@@ -66,6 +65,59 @@
         "browser.download.always_ask_before_handling_new_types" = true;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "network.protocol-handler.expose.magnet" = false;
+
+        "browser.contentblocking.category" = "strict";
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.donottrackheader.value" = 1;
+        "privacy.purge_trackers.enabled" = true;
+
+        "services.sync.prefs.sync.browser.uiCustomization.state" = true;
+        "signon.rememberSignons" = false;
+        "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
+        "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
+        # Reduce File IO / SSD abuse
+        # Otherwise, Firefox bombards the HD with writes. Not so nice for SSDs.
+        # This forces it to write every 5 minutes, rather than 15 seconds.
+        "browser.sessionstore.interval" = "300000";
+        # Disable "beacon" asynchronous HTTP transfers (used for analytics)
+        # https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon
+        "beacon.enabled" = false;
+        # Disable telemetry
+        # https://wiki.mozilla.org/Platform/Features/Telemetry
+        # https://wiki.mozilla.org/Privacy/Reviews/Telemetry
+        # https://wiki.mozilla.org/Telemetry
+        # https://www.mozilla.org/en-US/legal/privacy/firefox.html#telemetry
+        # https://support.mozilla.org/t5/Firefox-crashes/Mozilla-Crash-Reporter/ta-p/1715
+        # https://wiki.mozilla.org/Security/Reviews/Firefox6/ReviewNotes/telemetry
+        # https://gecko.readthedocs.io/en/latest/browser/experiments/experiments/manifest.html
+        # https://wiki.mozilla.org/Telemetry/Experiments
+        # https://support.mozilla.org/en-US/questions/1197144
+        # https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html#id1
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.server" = "data:,";
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.coverage.opt-out" = true;
+        "toolkit.coverage.opt-out" = true;
+        "toolkit.coverage.endpoint.base" = "";
+        "experiments.supported" = false;
+        "experiments.enabled" = false;
+        "experiments.manifest.uri" = "";
+        "browser.ping-centre.telemetry" = false;
+        # https://mozilla.github.io/normandy/
+        "app.normandy.enabled" = false;
+        "app.normandy.api_url" = "";
+        "app.shield.optoutstudies.enabled" = false;
+        # Disable health reports (basically more telemetry)
+        # https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
+        # https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.healthreport.service.enabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        # Disable crash reports
+        "breakpad.reportURL" = "";
+        "browser.tabs.crashReporting.sendReport" = false;
+        "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;  # don't submit backlogged reports
       };
       search = {
         force = true;
@@ -88,7 +140,7 @@
             ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
+            definedAliases = [ "@np" ];
           };
           "Startpage" = {
             urls = [
@@ -102,7 +154,7 @@
                 ];
               }
             ];
-            definedAliases = ["@g"];
+            definedAliases = [ "@g" ];
             metaData.alias = "@g";
           };
           "DuckDuckGo".metaData.hidden = false;
@@ -134,6 +186,11 @@
         .browser-toolbar > * #new-tab-button {
             /* Hide new-tab button does not work for some reason so..*/
             display: none !important;
+        }
+
+        .browser-toolbar > * #close-tab-button {
+          /* testing this out */
+          display: none !important;
         }
 
         /*** Proton Tabs Tweaks ***/

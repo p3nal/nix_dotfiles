@@ -179,7 +179,7 @@ in {
       .modules-center {
         background-color: @theme_base_color;
         color: @theme_text_color;
-        margin: 4px 0 0 0;
+        margin: 4px 120px 0 0;
       }
       .modules-left {
         margin: 4px 0 0 10px;
