@@ -1,11 +1,13 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   programs.firefox = {
     enable = true;
     policies = {
       # https://mozilla.github.io/policy-templates/
+      DontCheckDefaultBrowser = true;
       CaptivePortal = false;
       DisableFirefoxStudies = true;
       DisablePocket = true;
@@ -86,7 +88,7 @@
             ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@np" ];
+            definedAliases = ["@np"];
           };
           "Startpage" = {
             urls = [
@@ -100,7 +102,7 @@
                 ];
               }
             ];
-            definedAliases = [ "@g" ];
+            definedAliases = ["@g"];
             metaData.alias = "@g";
           };
           "DuckDuckGo".metaData.hidden = false;
@@ -113,26 +115,55 @@
         privateDefault = "DuckDuckGo";
       };
       userChrome = ''
-      * {
-        font-size: 8pt !important;
-        font-family: JetBrainsMono Nerd Font !important;
-      }
-
-        /* Tab bar */
-        toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {
-            /* Hide tab scroll buttons */
-            display: none;
+        * {
+          font-size: 8pt !important;
+          font-family: JetBrainsMono Nerd Font !important;
         }
 
-        .browser-toolbar > * #alltabs-button {
-            /* Hide tab drop-down list */
-            display: none;
-        }
+          /* Tab bar */
+          toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {
+              /* Hide tab scroll buttons */
+              display: none !important;
+          }
 
-        .browser-toolbar > * #new-tab-button {
-            /* Hide new-tab button */
-            display: none;
-        }
+          .browser-toolbar > * #alltabs-button {
+              /* Hide tab drop-down list */
+              display: none !important;
+          }
+
+          .browser-toolbar > * #new-tab-button {
+              /* Hide new-tab button does not work for some reason so..*/
+              /* display: none !important;*/
+          }
+
+          /*** Proton Tabs Tweaks ***/
+
+          /* Adjust tab corner shape, optionally remove space below tabs */
+
+          #tabbrowser-tabs {
+              --user-tab-rounding: 12px;
+          }
+
+          .tab-background {
+              border-radius: var(--user-tab-rounding) !important;
+          }
+
+          /* 1/16/2022 Tone down the Fx96 tab border with add-on themes in certain fallback situations */
+          .tab-background:is([selected], [multiselected]):-moz-lwtheme {
+              --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;
+          }
+          [brighttext="true"] .tab-background:is([selected], [multiselected]):-moz-lwtheme {
+              --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;
+          }
+
+          menupopup:not(.in-menulist) > menuitem,
+          menupopup:not(.in-menulist) > menu {
+            padding-block: 4px !important; /* reduce to 3px, 2px, 1px or 0px as needed */
+            min-height: unset !important; /* v92.0 - for padding below 4px */
+          }
+          :root {
+            --arrowpanel-menuitem-padding: 4px 8px !important;
+          }
       '';
     };
   };
