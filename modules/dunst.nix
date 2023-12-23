@@ -24,7 +24,7 @@ in {
       urgency_normal = {
         foreground = "#${colors.base04}";
         background = "#${colors.base01}";
-        timeout = 6;
+        timeout = 5;
       };
     };
   };

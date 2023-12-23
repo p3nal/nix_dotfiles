@@ -117,7 +117,7 @@
       userChrome = ''
         * {
           font-size: 8pt !important;
-          font-family: JetBrainsMono Nerd Font Medium !important;
+          font-family: JetBrainsMono Nerd Font Mono !important;
         }
 
         /* Tab bar */
