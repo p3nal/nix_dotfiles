@@ -6,6 +6,8 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./modules/xdg.nix
+    ./modules/git.nix
     ./modules/neofetch.nix
     ./modules/rofi.nix
     ./modules/scripts.nix
@@ -109,39 +111,6 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     ssh.enable = true;
-    git = {
-      enable = true;
-      userName = "p3nal";
-      userEmail = "103528596+p3nal@users.noreply.github.com";
-    };
-  };
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 14;
-  };
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "application/pdf" = ["zathura.desktop"];
-      "image/*" = ["sxiv.desktop"];
-      "video/png" = ["vlc.desktop"];
-      "video/jpg" = ["vlc.desktop"];
-      "video/*" = ["vlc.desktop"];
-      "x-scheme-handler/http" = ["firefox.desktop"];
-      "x-scheme-handler/chrome" = ["firefox.desktop"];
-      "x-scheme-handler/https" = ["firefox.desktop"];
-      "text/html" = ["firefox.desktop"];
-      "application/x-extension-htm" = ["firefox.desktop"];
-      "application/x-extension-html" = ["firefox.desktop"];
-      "application/x-extension-shtml" = ["firefox.desktop"];
-      "application/xhtml+xml" = ["firefox.desktop"];
-      "application/x-extension-xhtml" = ["firefox.desktop"];
-      "application/x-extension-xht" = ["firefox.desktop"];
-    };
   };
 
   # https://nixos.wiki/wiki/Virt-manager
