@@ -30,6 +30,7 @@
   fileSystems."/mnt/snw" = {
     device = "/dev/disk/by-label/S\\x26W";
     fsType = "ext4";
+    noCheck = false;
     depends = "/";
     options = [
       "noauto"

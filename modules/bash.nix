@@ -13,7 +13,8 @@
       msnw = "mount /mnt/snw";
       usnw = "umount /mnt/snw";
       snw = "cd /mnt/snw";
-      bkup = "ionice -c 3 rsync -auvhP /home/penal/Sync /home/penal/.dotfiles /home/penal/Movies /mnt/snw";
+      bkup = "ionice -c 3 rsync -auvhP /home/penal/Sync /home/penal/.dotfiles /home/penal/Movies /mnt/snw --delete-after";
+      phonebkup = "ionice -c 3 rsync -ruvhP /home/penal/Media/ /mnt/snw/personal-media/";
       projbkup = "ionice -c 3 rsync -auvhP /home/penal/Playground /home/penal/Projects /mnt/snw --include='**.gitignore' --filter=':- .gitignore' --delete-after";
       scan = "iwctl station wlan0 scan && iwctl station wlan0 get-networks";
       connect = "iwctl station wlan0 connect";
@@ -28,9 +29,10 @@
     enableCompletion = true;
     profileExtra = ''
       if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-        exec Hyprland
+        exec ssh-agent Hyprland
       fi
       export XDG_DATA_DIRS="''$HOME/.nix-profile/share:''${XDG_DATA_DIRS}"
+      # eval $(ssh-agent)
     '';
     bashrcExtra = ''
       # Enable school proxy

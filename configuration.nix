@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -191,6 +192,7 @@
       syncthing
       vlc
       alsa-utils
+      inkscape
     ];
   };
 
@@ -201,6 +203,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    sops
     home-manager
     libsForQt5.qt5.qtquickcontrols
     libsForQt5.qt5.qtgraphicaleffects
@@ -248,8 +251,13 @@
     22000
     21027
   ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+
+  # sops-nix
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.sshKeyPaths = [ "/home/penal/.ssh/id_ed25519" ];
+  # sops.age.keyFile = "/home/penal/.config/sops/age/keys.txt";
+  sops.secrets.example_key = {};
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
