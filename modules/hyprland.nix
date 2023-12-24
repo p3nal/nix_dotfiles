@@ -210,6 +210,14 @@
         "wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --no-persist"
       ];
 
+      windowrulev2 = [
+         # telegram media viewer
+        "float, title:^(Media viewer)$"
+        # open firefox in workspace 2
+        "workspace 2 silent, class:(firefox)"
+        "workspace 3 silent, class:(org.telegram.desktop)"
+      ];
+
       xwayland.force_zero_scaling = true;
     };
   };
