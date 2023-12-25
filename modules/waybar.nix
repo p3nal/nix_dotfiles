@@ -23,6 +23,7 @@ in {
           format = " 󱄅 ";
           tooltip = false;
           on-click = "chpaper";
+          on-click-right = "rofi-powermenu";
         };
 
         keyboard-state = {
