@@ -15,6 +15,7 @@
       luajitPackages.lua-lsp
       ripgrep
       rnix-lsp
+      fd
 
       wl-clipboard
     ];
