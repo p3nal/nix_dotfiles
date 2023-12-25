@@ -192,7 +192,10 @@
         "SUPER, E, exec, hyprctl keyword monitor HDMI-A-2,preferred,auto,auto"
 
         # clipman
-        "SUPER, V, exec, ${pkgs.clipman}/bin/clipman pick -t rofi"
+        ''SUPER, V, exec, ${pkgs.clipman}/bin/clipman pick -t rofi --tool-args="-theme gruvbox-dark"''
+
+        # rofi-powermenu
+        ''$mainMod, Delete, exec, rofi-powermenu''
       ];
 
       bindm = [

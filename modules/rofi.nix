@@ -3,6 +3,9 @@
 , pkgs
 , ...
 }: {
+  home.file = {
+    ".config/rofi/rofi-powermenu-gruvbox-config.rasi".source = ../config/rofi/rofi-powermenu-gruvbox-config.rasi;
+  };
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
@@ -16,7 +19,7 @@
       show-icons = true;
       display-drun = "  ";
       drun-display-format = "{name}";
-      icon-theme = "Gruvbox-Dark";
+      icon-theme = "gruvbox-dark";
     };
   };
 }

@@ -66,6 +66,7 @@
       "modprobe.blacklist=iTCO_wdt"
       # for screenrec, basically
       "i915.enable_guc=2"
+      "intel_iommu=on"
     ];
     tmp = {
       useTmpfs = lib.mkDefault true;
@@ -76,7 +77,7 @@
       # disable sysrq
       "kernel.sysrq" = 0;
       # disable coredumps
-      "kernel.core_pattern"="/dev/null";
+      "kernel.core_pattern" = "/dev/null";
       # TCP hardening
       "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
       "net.ipv4.conf.default.rp_filter" = 1;
@@ -144,6 +145,9 @@
     };
     libvirtd = {
       enable = true;
+      qemu.ovmf = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
     };
   };
 

@@ -189,7 +189,7 @@ in {
       /*-----modules indv----*/
         #workspaces button {
           padding: 1px 5px;
-          background-color: transparent;
+          /*background-color: transparent;*/
         }
         #workspaces button:hover {
           box-shadow: inherit;
@@ -203,11 +203,7 @@ in {
         #workspaces button.focused {
           background-color: #${colors.base09};
           color: #${colors.base01};
-        }
-
-        #workspaces button.focused {
-            background-color: #64727D;
-            box-shadow: inset 0 -3px #ffffff;
+          box-shadow: inset 0 -3px #ffffff;
         }
 
 
