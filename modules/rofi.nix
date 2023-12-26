@@ -5,12 +5,14 @@
 }: {
   home.file = {
     ".config/rofi/rofi-powermenu-gruvbox-config.rasi".source = ../config/rofi/rofi-powermenu-gruvbox-config.rasi;
+    ".config/rofi/rofi-launcher-gruvbox-config.rasi".source = ../config/rofi/rofi-launcher-gruvbox-config.rasi;
+    ".config/rofi/gruvbox.rasi".source = ../config/rofi/gruvbox.rasi;
   };
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
     font = "JetBrainsMono Nerd Font Medium 8";
-    theme = ../config/rofi/rofi-gruvbox-dark.rasi;
+    theme = ../config/rofi/rofi-launcher-gruvbox-config.rasi;
     extraConfig = {
       bw = 1;
       # border = "10px solid";

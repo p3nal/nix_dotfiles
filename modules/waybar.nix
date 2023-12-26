@@ -1,11 +1,12 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}: let
+{ inputs
+, pkgs
+, config
+, ...
+}:
+let
   colors = config.colorScheme.colors;
-in {
+in
+{
   programs.waybar = {
     enable = true;
     settings = {
@@ -15,15 +16,16 @@ in {
         height = 30;
         spacing = 4;
 
-        modules-left = ["custom/nixos-logo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media"];
-        modules-center = ["idle_inhibitor" "clock"];
-        modules-right = ["pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray"];
+        modules-left = [ "custom/nixoslogo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
+        modules-center = [ "idle_inhibitor" "clock" ];
+        modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
 
-        "custom/nixos-logo" = {
+        "custom/nixoslogo" = {
           format = " 󱄅 ";
           tooltip = false;
-          on-click = "chpaper";
+          on-click = "rofi -show drun";
           on-click-right = "rofi-powermenu";
+          on-click-middle = "chpaper";
         };
 
         keyboard-state = {
@@ -95,7 +97,7 @@ in {
           format = "{percent}% {icon}";
           on-scroll-up = "light -A 1";
           on-scroll-down = "light -U 1";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" "" "" "" "" ];
         };
         "battery#bat0" = {
           adapter = "AC";
@@ -108,7 +110,7 @@ in {
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" ];
         };
         "battery#bat1" = {
           bat = "BAT1";
@@ -121,7 +123,7 @@ in {
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" ];
         };
         network = {
           format-wifi = "{essid} ({signalStrength}%) ";
@@ -148,7 +150,7 @@ in {
             phone = "";
             portable = "";
             car = "";
-            default = ["" "" ""];
+            default = [ "" "" "" ];
           };
         };
       };
@@ -194,11 +196,12 @@ in {
         }
         #workspaces button:hover {
           box-shadow: inherit;
-          background-color: #${colors.base0B};
+          background-color: #${colors.base0D};
         }
-        #custom-nixos-logo button:hover {
+        #custom-nixoslogo button:hover {
+          padding: 1px 5px;
           box-shadow: inherit;
-          background-color: #${colors.base0B};
+          background-color: #${colors.base0D};
         }
 
         #workspaces button.focused {
@@ -218,6 +221,7 @@ in {
         #network,
         #pulseaudio,
         #custom-media,
+        #custom-nixoslogo
         #tray,
         #idle_inhibitor {
           padding: 0 10px;
