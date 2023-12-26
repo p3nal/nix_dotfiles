@@ -16,9 +16,22 @@ in
         height = 30;
         spacing = 4;
 
-        modules-left = [ "custom/nixoslogo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/media" ];
+        modules-left = [ "custom/nixoslogo" "temperature" "hyprland/workspaces" "hyprland/submap" "custom/cmus" ];
         modules-center = [ "idle_inhibitor" "clock" ];
-        modules-right = [ "pulseaudio" "network" "disk" "backlight" "battery#bat0" "battery#bat1" "tray" ];
+        modules-right = [ "pulseaudio" "network" "backlight" "disk" "battery#bat0" "battery#bat1" "tray" ];
+
+        "custom/cmus" = {
+          format = "󰎆  {}";
+          max-length = 30;
+          interval = 10;
+          exec = ''cmus-remote -C "format_print '%t'"''; # %a artist - %t title
+          exec-if = "pgrep cmus";
+          on-click-right = "cmus-remote -n"; # next
+          on-click-middle = "cmus-remote -u"; # toggle pause
+          on-click = "cmus-remote -r"; # prev
+          escape = true; # handle markup entities
+          tooltip = false;
+        };
 
         "custom/nixoslogo" = {
           format = " 󱄅 ";
@@ -43,10 +56,6 @@ in
           on-scroll-down = "hyprctl dispatch workspace e-1";
           on-click = "activate";
         };
-        "hyprland/submap" = {
-          "format" = "<span style=\"italic\">{}</span>";
-          "tooltip" = false;
-        };
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
@@ -59,7 +68,7 @@ in
           "hwmon-path" = "/sys/class/hwmon/hwmon6/temp1_input";
           critical-threshold = 80;
           # format-critical = "{temperatureC}°C {icon}";
-          format = "{temperatureC}°C {icon}";
+          format = "{temperatureC}°C";
           # format-icons = ["" "" ""];
         };
         tray = {
@@ -67,7 +76,8 @@ in
         };
         clock = {
           interval = 60;
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format = "  {:%H:%M}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt> ";
           # format-alt = "{:%Y-%m-%d}";
           format-alt = "{:%a, %b %d, %Y (%R)}";
           "calendar" = {
@@ -126,7 +136,7 @@ in
           format-icons = [ "" "" "" "" "" ];
         };
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
+          format-wifi = "{essid} ({signalStrength}%) 󰤨";
           format-ethernet = "{ipaddr}/{cidr} ";
           tooltip-format = "{ifname} via {gwaddr} ";
           format-linked = "{ifname} (No IP) ";
@@ -199,17 +209,40 @@ in
           background-color: #${colors.base0D};
         }
         #custom-nixoslogo button:hover {
-          padding: 1px 5px;
           box-shadow: inherit;
           background-color: #${colors.base0D};
         }
 
         #workspaces button.focused {
           background-color: #${colors.base09};
-          color: #${colors.base01};
+          color: @theme_base_color;
           box-shadow: inset 0 -3px #ffffff;
         }
 
+        #custom-cmus {
+          background-color: #${colors.base0C};
+          color: @theme_base_color;
+        }
+
+        #network {
+          background-color: #${colors.base0D};
+          color: @theme_base_color;
+        }
+
+        #clock {
+          background-color: #${colors.base0B};
+          color: @theme_base_color;
+        }
+
+        #disk {
+          background-color: #${colors.base0E};
+          color: @theme_base_color;
+        }
+
+        #temperature {
+          background-color: #${colors.base09};
+          color: @theme_base_color;
+        }
 
         #clock,
         #backlight,
@@ -220,12 +253,14 @@ in
         #temperature,
         #network,
         #pulseaudio,
-        #custom-media,
-        #custom-nixoslogo
+        /*#custom-nixoslogo,*/
+        #custom-cmus,
         #tray,
         #idle_inhibitor {
-          padding: 0 10px;
+          padding: 0 10px 0 10px;
         }
+
+
         /*-----Indicators----*/
         #idle_inhibitor.activated {
           color: #${colors.base0B};
@@ -243,7 +278,8 @@ in
           color: #${colors.base0A};
         }
         #battery.critical:not(.charging) {
-          color: #${colors.base08};
+          color: #${colors.base01};
+          background-color: #${colors.base08};
         }
         #clock.calendar {
           font-size: 8px;

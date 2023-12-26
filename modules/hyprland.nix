@@ -106,8 +106,8 @@
         workspace_swipe_distance = 200;
       };
 
-      "device:epic-mouse-v1" = {
-        sensitivity = -0.5;
+      "device:tpps/2-ibm-trackpoint" = {
+        sensitivity = 1.0; # -1.0 - 1.0, 0 means no modification.
       };
 
       "$mainMod" = "ALT";
@@ -196,6 +196,11 @@
 
         # rofi-powermenu
         ''$mainMod, Delete, exec, rofi-powermenu''
+
+        # cmus controls
+        ''SUPER, Z, exec, cmus-remote --prev''
+        ''SUPER, B, exec, cmus-remote --next''
+        ''SUPER, C, exec, cmus-remote --pause''
       ];
 
       bindm = [
