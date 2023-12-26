@@ -23,12 +23,14 @@ in
         "custom/cmus" = {
           format = "󰎆  {}";
           max-length = 30;
-          interval = 10;
+          interval = 5;
           exec = ''cmus-remote -C "format_print '%t'"''; # %a artist - %t title
           exec-if = "pgrep cmus";
           on-click-right = "cmus-remote -n"; # next
           on-click-middle = "cmus-remote -u"; # toggle pause
           on-click = "cmus-remote -r"; # prev
+          on-scroll-up = "cmus-remote -k +1";
+          on-scroll-down = "cmus-remote -k -1";
           escape = true; # handle markup entities
           tooltip = false;
         };
@@ -102,13 +104,14 @@ in
         disk = {
           format = "{free} 󰋊";
           path = "/";
-          tooltip-format = "<span color='#${colors.base0D}'>{}</span>";
+          format-alt = "{used} 󱁋";
         };
         backlight = {
           format = "{percent}% {icon}";
           on-scroll-up = "light -A 1";
           on-scroll-down = "light -U 1";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          # format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          format-icons = [ "󰃞" "󰃞" "󰃟" "󰃟" "󰃟" "󰃠" "󰃠" "󰃠" "󰃠" ];
         };
         "battery#bat0" = {
           adapter = "AC";

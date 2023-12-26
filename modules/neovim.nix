@@ -12,6 +12,7 @@
 
     extraPackages = with pkgs; [
       lua-language-server
+      rust-analyzer
       luajitPackages.lua-lsp
       ripgrep
       rnix-lsp

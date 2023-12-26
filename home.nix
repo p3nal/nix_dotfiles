@@ -76,6 +76,7 @@
     qbittorrent
     alejandra
     cmus
+    inputs.lga.packages.${pkgs.system}.default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

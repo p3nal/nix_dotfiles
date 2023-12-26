@@ -35,6 +35,8 @@
       # eval $(ssh-agent)
     '';
     bashrcExtra = ''
+      # Enable vim mode
+      set -o vi
       # Enable school proxy
       function pe() {
       	export http_proxy="http://10.23.201.11:3128/"
@@ -57,5 +59,10 @@
       	echo -e "Proxy environment variables removed."
       }
     '';
+    shellOptions = [
+      "autocd"
+      "cdspell"
+      "direxpand"
+    ];
   };
 }

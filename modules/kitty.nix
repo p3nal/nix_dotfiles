@@ -6,7 +6,7 @@
 }: {
   programs.kitty = {
     enable = true;
-    theme = "Gruvbox Dark Hard";
+    theme = "Gruvbox Material Dark Hard";
     font.name = "JetBrainsMono Nerd Font Medium";
     font.size = 10;
     settings = {
