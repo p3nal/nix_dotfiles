@@ -4,7 +4,7 @@ Welp, here it is. I finally took the pill (two pills actually, since I've also s
 
 <img src="./assets/desktop-screenshot-4.png" width="100%" />
 <p align="center">
-<span><img src="./assets/desktop-screenshot.png" width="33%" /></span>
+<span><img src="./assets/desktop-screenshot-5.png" width="33%" /></span>
 <span><img src="./assets/desktop-screenshot-3.png" width="33%" /></span>
 <span><img src="./assets/desktop-screenshot-2.png" width="33%" /></span>
 </p>

@@ -35,7 +35,7 @@
         border_size = 2;
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgba(${config.colorScheme.colors.base0A}ff) rgba(${config.colorScheme.colors.base0D}ff) 45deg";
+        "col.active_border" = "rgba(${config.colorScheme.colors.base08}ff) rgba(${config.colorScheme.colors.base0D}ff) 45deg";
         "col.inactive_border" = "rgba(${config.colorScheme.colors.base0C}55) rgba(${config.colorScheme.colors.base08}55) 135deg";
 
         layout = "dwindle";
@@ -140,6 +140,10 @@
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
+        "$mainMod, F1, workspace, F1"
+        "$mainMod, F2, workspace, F2"
+        "$mainMod, F3, workspace, F3"
+        "$mainMod, F4, workspace, F4"
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
@@ -152,6 +156,10 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
+        "$mainMod SHIFT, F1, movetoworkspace, F1"
+        "$mainMod SHIFT, F2, movetoworkspace, F2"
+        "$mainMod SHIFT, F3, movetoworkspace, F3"
+        "$mainMod SHIFT, F4, movetoworkspace, F4"
 
         # Example special workspace (scratchpad)
         "$mainMod, S, togglespecialworkspace, magic"
