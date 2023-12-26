@@ -102,6 +102,7 @@ in
         disk = {
           format = "{free} 󰋊";
           path = "/";
+          tooltip-format = "<span color='#${colors.base0D}'>{}</span>";
         };
         backlight = {
           format = "{percent}% {icon}";
@@ -138,7 +139,7 @@ in
         network = {
           format-wifi = "{essid} ({signalStrength}%) 󰤨";
           format-ethernet = "{ipaddr}/{cidr} ";
-          tooltip-format = "{ifname} via {gwaddr} ";
+          tooltip-format = "<span color='#${colors.base0D}'>{ifname} via {gwaddr} </span>";
           format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ⚠";
           format-alt = "{ifname}: {ipaddr}/{cidr}";
