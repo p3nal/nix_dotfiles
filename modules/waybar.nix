@@ -78,7 +78,7 @@ in
         };
         clock = {
           interval = 60;
-          format = "  {:%H:%M}";
+          format = "   {:%H:%M}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt> ";
           # format-alt = "{:%Y-%m-%d}";
           format-alt = "{:%a, %b %d, %Y (%R)}";
@@ -174,7 +174,7 @@ in
       * {
         border: none;
         font-family: JetBrainsMono, Font Awesome, Roboto, Arial, sans-serif;
-        font-size: 13px;
+        font-size: 12px;
         color: #${colors.base07};
         border-radius: 20px;
       }
@@ -246,6 +246,10 @@ in
         #temperature {
           background-color: #${colors.base09};
           color: @theme_base_color;
+        }
+
+        #custom-nixoslogo {
+          padding: 0 0 0 5px;
         }
 
         #clock,

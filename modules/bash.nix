@@ -35,8 +35,20 @@
       # eval $(ssh-agent)
     '';
     bashrcExtra = ''
+      parse_git_branch() {
+        git branch --show-current 2> /dev/null | awk -F: '{print "("$1")"}'
+      }
+
+      export PS1='\[\e]133;k;start_kitty\a\]\[\e]133;A\a\]\[\e]133;k;end_kitty\a\]\n\[\e]133;k;start_secondary_kitty\a\]\[\e]133;A;k=s\a\]\[\e]133;k;end_secondary_kitty\a\]\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w] \[\e[91m\]$(parse_git_branch)\[\e[00m\]\n\$\[\033[0m\] \[\e]133;k;start_suffix_kitty\a\]\[\e[5 q\]\[\e]2;\w\a\]\[\e]133;k;end_suffix_kitty\a\]'
       # Enable vim mode
       set -o vi
+      bind -m vi-insert 'TAB: menu-complete'
+      bind -m vi-command 'TAB: menu-complete'
+      bind -m vi-command 'Control-l: clear-screen'
+      bind -m vi-insert 'Control-l: clear-screen'
+      bind -m vi-insert 'Control-e: end-of-line'
+      bind -m vi-insert 'Control-a: beginning-of-line'
+
       # Enable school proxy
       function pe() {
       	export http_proxy="http://10.23.201.11:3128/"

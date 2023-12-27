@@ -110,6 +110,14 @@
         sensitivity = 1.0; # -1.0 - 1.0, 0 means no modification.
       };
 
+      binds = {
+        allow_workspace_cycles = true;
+      };
+
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       "$mainMod" = "ALT";
       bind = [
         "$mainMod SHIFT, return, exec, kitty"
@@ -209,6 +217,13 @@
         ''SUPER, Z, exec, cmus-remote --prev''
         ''SUPER, B, exec, cmus-remote --next''
         ''SUPER, C, exec, cmus-remote --pause''
+
+        # kitty in special
+        "$mainMod, K, togglespecialworkspace, kitty"
+        "$mainMod SHIFT, K, exec, [workspace special:kitty] kitty"
+
+        # toggle waybar visibility
+        "$mainMod, B, exec, pkill -SIGUSR1 waybar"
       ];
 
       bindm = [
@@ -234,8 +249,6 @@
         "workspace 7 silent, class:(vlc)"
         "workspace 3 silent, class:(org.telegram.desktop)"
       ];
-
-      xwayland.force_zero_scaling = true;
     };
   };
 }
