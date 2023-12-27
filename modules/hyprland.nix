@@ -198,9 +198,6 @@
         # swaylock
         "$mainMod CTRL, L, exec, swaylock"
 
-        # lock on lid switch closed or open or somth idk it works.
-        ", switch:on:Lid Switch, exec, swaylock"
-
         # poweroff
         "$mainMod CTRL WIN, Delete, exec, poweroff"
 
@@ -230,6 +227,11 @@
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+
+      bindl = [
+        # lock on lid switch closed or open or somth idk it works.
+        ", switch:on:Lid Switch, exec, swaylock"
       ];
 
       exec-once = [
