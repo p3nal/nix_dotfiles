@@ -16,7 +16,8 @@ in {
         origin = "top-right";
         transparency = 10;
         # frame_color = "#${colors.base0E}";
-        frame_color = "#${colors.base0A}55";
+        frame_color = "#${colors.base0B}DD";
+        frame_width = 2;
         font = "JetBrainsMono Nerd Font Medium 8";
         corner_radius = 10;
       };

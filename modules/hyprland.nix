@@ -217,7 +217,8 @@
 
         # kitty in special
         "$mainMod, K, togglespecialworkspace, kitty"
-        "$mainMod SHIFT, K, exec, [workspace special:kitty] kitty"
+        # telegram special
+        "$mainMod, T, togglespecialworkspace, telegram"
 
         # toggle waybar visibility
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
@@ -234,11 +235,15 @@
         ", switch:on:Lid Switch, exec, swaylock"
       ];
 
+      workspace = [
+        "special:kitty, on-created-empty:kitty"
+        "special:telegram, on-created-empty:telegram-desktop"
+      ];
+
       exec-once = [
         "chpaper"
         "waybar"
         "[workspace 2 silent] firefox"
-        "[workspace 3 silent] telegram-desktop"
         "[workspace 9 silent] keepassxc"
         "wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --no-persist"
       ];
@@ -249,7 +254,6 @@
         # open stuff in specific workspaces
         "workspace 2 silent, class:(firefox)"
         "workspace 7 silent, class:(vlc)"
-        "workspace 3 silent, class:(org.telegram.desktop)"
       ];
     };
   };
