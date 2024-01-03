@@ -58,7 +58,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     dconf
-    zathura
     sxiv
     neofetch
     waybar
@@ -77,22 +76,17 @@
     alejandra
     cmus
     inputs.lga.packages.${pkgs.system}.default
+    libreoffice
+    freetube
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    # shhh quiet.
     ".hushlogin".text = "";
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    # cmus colo
+    ".config/cmus/rc".text = "colorscheme gruvbox-warm";
   };
 
   # You can also manage environment variables but you will have to manually
@@ -113,6 +107,11 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     ssh.enable = true;
+    direnv.enable = true;
+    zathura = {
+      enable = true;
+      extraConfig = "set selection-clipboard clipboard";
+    };
   };
 
   # https://nixos.wiki/wiki/Virt-manager

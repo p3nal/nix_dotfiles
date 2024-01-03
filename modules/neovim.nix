@@ -14,6 +14,7 @@
       lua-language-server
       rust-analyzer
       luajitPackages.lua-lsp
+      python311Packages.python-lsp-server
       ripgrep
       rnix-lsp
       fd

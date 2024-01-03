@@ -158,13 +158,13 @@ in
           format-source = "{volume}% ";
           format-source-muted = "";
           format-icons = {
-            headphone = "";
+            headphone = "󰋋";
             hands-free = "";
             headset = "";
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = [ "󰕿" "󰖀" "󰕾" ];
           };
         };
       };

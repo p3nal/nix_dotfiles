@@ -39,8 +39,8 @@ in {
       (pkgs.writeShellScriptBin "rofi-powermenu" ''
         rofi_command="rofi -theme $HOME/.config/rofi/rofi-powermenu-gruvbox-config.rasi"
 
-        power_off=" "
-        reboot=" "
+        power_off="⏻ "
+        reboot=" "
         lock="󰌾 "
         suspend="󰤄 "
         log_out=" "

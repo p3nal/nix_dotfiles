@@ -195,6 +195,7 @@
     git
     unzip
     sops
+    file
     home-manager
     libsForQt5.qt5.qtquickcontrols
     libsForQt5.qt5.qtgraphicaleffects
@@ -211,6 +212,8 @@
       fira-code-symbols
       ubuntu_font_family
       font-awesome
+      corefonts
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
   };
 

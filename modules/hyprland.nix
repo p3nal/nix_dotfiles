@@ -134,7 +134,7 @@
         ", xf86monbrightnessup, exec, ${pkgs.light}/bin/light -A 2"
         ", xf86monbrightnessdown, exec, ${pkgs.light}/bin/light -U 2"
         # Move focus with mainMod + arrow keys
-        "$mainMod, K, cyclenext, prev"
+        # "$mainMod, K, cyclenext, prev"
         "$mainMod, J, cyclenext,"
 
         # Switch workspaces with mainMod + [0-9]
@@ -186,7 +186,7 @@
         "$mainMod, H, splitratio, -0.2"
         "$mainMod, L, splitratio, +0.2"
 
-        ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -g "`${pkgs.slurp}/bin/slurp -w 0`" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && wl-paste > ~/Pictures/screenshots/screenshot-$(date +%a-%d-%b-%H-%M-%S).png | dunstify "Screenshot of the region taken" -t 1000''
+        ''$mainMod, Print, exec, ${pkgs.grim}/bin/grim -l 4 -g "`${pkgs.slurp}/bin/slurp -w 0`" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && wl-paste > ~/Pictures/screenshots/screenshot-$(date +%a-%d-%b-%H-%M-%S).png | dunstify "Screenshot of the region taken" -t 1000''
         ''SHIFT, Print, exec, ${pkgs.grim}/bin/grim -l 8 -g "`${pkgs.slurp}/bin/slurp -w 0`" - | ${pkgs.swappy}/bin/swappy -f - ''
 
         #gamemode
@@ -219,6 +219,8 @@
         "$mainMod, K, togglespecialworkspace, kitty"
         # telegram special
         "$mainMod, T, togglespecialworkspace, telegram"
+        # cmus special
+        "$mainMod, C, togglespecialworkspace, cmus"
 
         # toggle waybar visibility
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
@@ -238,6 +240,7 @@
       workspace = [
         "special:kitty, on-created-empty:kitty"
         "special:telegram, on-created-empty:telegram-desktop"
+        "special:cmus, on-created-empty:kitty cmus"
       ];
 
       exec-once = [
@@ -254,6 +257,8 @@
         # open stuff in specific workspaces
         "workspace 2 silent, class:(firefox)"
         "workspace 7 silent, class:(vlc)"
+        "workspace 8 silent, class:(org.pwmt.zathura)"
+        "workspace 9 silent, class:(org.keepassxc.KeePassXC)"
       ];
     };
   };
