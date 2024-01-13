@@ -15,6 +15,7 @@
       rust-analyzer
       luajitPackages.lua-lsp
       python311Packages.python-lsp-server
+      marksman
       ripgrep
       rnix-lsp
       fd

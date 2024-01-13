@@ -21,12 +21,13 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = "eDP-1,preferred,auto,auto";
+      monitor = ",preferred,auto,auto";
       env = [
         "WLR_DRM_NO_ATOMIC,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_QPA_PLATFORM,wayland;xcb"
+        "WLR_NO_HARDWARE_CURSORS,1" # supposed to help with mouse screen sharing
       ];
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -224,6 +225,10 @@
 
         # toggle waybar visibility
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
+
+        # rfkill stuff
+        ", XF86WLAN, exec, rfkill toggle wlan"
+        ", XF86Bluetooth, exec, rfkill toggle bluetooth"
       ];
 
       bindm = [

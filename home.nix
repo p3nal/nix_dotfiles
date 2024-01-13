@@ -110,7 +110,12 @@
     direnv.enable = true;
     zathura = {
       enable = true;
-      extraConfig = "set selection-clipboard clipboard";
+      extraConfig = ''
+        set statusbar-page-percent true
+        set default-bg #${config.colorScheme.colors.base07}
+        set default-bg #${config.colorScheme.colors.base00}
+        set selection-clipboard clipboard
+      '';
     };
   };
 

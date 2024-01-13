@@ -125,6 +125,10 @@
     hyprland.enable = true;
     nano.enable = false; # remove nixos bloat
     virt-manager.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
   };
 
   security.pam.services.swaylock = { };
@@ -173,7 +177,7 @@
   users.users.penal = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "input" "docker" "libvirtd" "wireshark" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       dunst
       libnotify
