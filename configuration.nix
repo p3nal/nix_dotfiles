@@ -41,6 +41,10 @@
   services.tlp = {
     enable = true;
     # settings = {
+    #   NATACPI_ENABLE=1;
+    #   TPACPI_ENABLE=1;
+    #   TPSMAPI_ENABLE=1;
+
     #   CPU_SCALING_GOVERNOR_ON_AC = "performance";
     #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 

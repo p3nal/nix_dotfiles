@@ -132,8 +132,8 @@
         ", xf86audiolowervolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%-"
         ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
         ", xf86audiomicmute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
-        ", xf86monbrightnessup, exec, ${pkgs.light}/bin/light -A 2"
-        ", xf86monbrightnessdown, exec, ${pkgs.light}/bin/light -U 2"
+        ", xf86monbrightnessup, exec, ${pkgs.light}/bin/light -A 1"
+        ", xf86monbrightnessdown, exec, ${pkgs.light}/bin/light -U 1"
         # Move focus with mainMod + arrow keys
         # "$mainMod, K, cyclenext, prev"
         "$mainMod, J, cyclenext,"
@@ -256,6 +256,7 @@
         "wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --no-persist"
       ];
 
+      # window rules
       windowrulev2 = [
          # telegram media viewer
         "float, title:^(Media viewer)$"
@@ -264,6 +265,7 @@
         "workspace 7 silent, class:(vlc)"
         "workspace 8 silent, class:(org.pwmt.zathura)"
         "workspace 9 silent, class:(org.keepassxc.KeePassXC)"
+        "workspace 13 silent, class:(org.qbittorrent.qBittorrent)"
       ];
     };
   };
